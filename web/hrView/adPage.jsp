@@ -1,11 +1,11 @@
 <%-- 
-    Document   : customerPage
-    Created on : Aug 13, 2018, 4:10:02 PM
+    Document   : adminPage
+    Created on : Aug 13, 2018, 2:34:46 PM
     Author     : Dayinta Warih Wulandari
 --%>
-<%@page import="entities.Customer"%>
+<%@page import="entities.AppDev"%>
 <%@page import="tools.HibernateUtil"%>
-<%@page import="controllers.CustomerController"%>
+<%@page import="controllers.AppDevController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,7 @@
 
     <body id="page-top">
         <%
-           CustomerController cc  = new CustomerController(HibernateUtil.getSessionFactory());
+           AppDevController ap  = new AppDevController(HibernateUtil.getSessionFactory());
         %>
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
@@ -95,6 +95,7 @@
                         <span>Customer</span></a>
                 </li>
             </ul>
+
             <div id="content-wrapper">
 
                 <div class="container-fluid">
@@ -102,7 +103,7 @@
                     <!-- Breadcrumbs-->
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="adPage.jsp">Dashboard</a>
+                            <a href="adminPage.jsp">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item active">Overview</li>
                     </ol>
@@ -111,16 +112,15 @@
                     <div class="card mb-3">
                         <div class="card-header">
                             <i class="fas fa-table"></i>
-                            Data Customer</div>
+                            Data Application Developer</div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Customer ID</th>
+                                            <th>NIK</th>
                                             <th>Name</th>
-                                            <th>Site ID</th>
                                             <th>Status</th>
                                             <th></th>
                                         </tr>
@@ -128,9 +128,8 @@
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Customer ID</th>
+                                            <th>NIK</th>
                                             <th>Name</th>
-                                            <th>Site</th>
                                             <th>Status</th>
                                             <th></th>
                                         </tr>
@@ -138,24 +137,21 @@
                                     <tbody>
                                         <%
             int i = 1;
-                for (Customer customer : cc.binding()) {
+                for (AppDev ad : ap.binding()) {
                                         %>
                                         <tr>
                                             <td><%= i%></td>
-                                            <td><%= customer.getId()%></td>
-                                            <td><%= customer.getNama()%></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><%= ad.getNik()%></td>
+                                            <td><%= ad.getNama()%></td>
+                                            <td><%= ad.getStatus()%></td>
                                             <td>
                                                 <a href="?" class="btn btn-outline-secondary btn-sm">Detail</a>
                                             </td>
-                                    
-                                    </td>
-                                    </tr>
-                                    <%
-    i++;
-}
-                                    %>
+                                        </tr>
+                                        <%
+        i++;
+    }
+                                        %>
                                     </tbody>
                                 </table>
                             </div>
@@ -224,4 +220,5 @@
         <script src="js/demo/datatables-demo.js"></script>
         <script src="js/demo/chart-area-demo.js"></script>
     </body>
+
 </html>

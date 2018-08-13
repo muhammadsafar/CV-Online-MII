@@ -1,11 +1,9 @@
 <%-- 
-    Document   : customerPage
-    Created on : Aug 13, 2018, 4:10:02 PM
+    Document   : sitePage
+    Created on : Aug 14, 2018, 4:58:52 AM
     Author     : Dayinta Warih Wulandari
 --%>
-<%@page import="entities.Customer"%>
-<%@page import="tools.HibernateUtil"%>
-<%@page import="controllers.CustomerController"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,9 +32,6 @@
     </head>
 
     <body id="page-top">
-        <%
-           CustomerController cc  = new CustomerController(HibernateUtil.getSessionFactory());
-        %>
         <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
             <a class="navbar-brand mr-1" href="mainHR.jsp">CV ONLINE</a>
@@ -69,10 +64,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                         <h6 class="dropdown-header">Add data:</h6>
-                        <a class="dropdown-item" href="registerSite.jsp">Site</a>
-                        <a class="dropdown-item" href="registerCustomer.jsp">Customer</a>
-                        <a class="dropdown-item" href="registerHRandAD.jsp">HR</a>
-                        <a class="dropdown-item" href="registerHRandAD.jsp">Application Developer</a>
+                        <a class="dropdown-item" href="?">Site</a>
+                        <a class="dropdown-item" href="?">Customer</a>
+                        <a class="dropdown-item" href="?">HR</a>
+                        <a class="dropdown-item" href="?">Application Developer</a>
                         <div class="dropdown-divider"></div>
                         <h6 class="dropdown-header">Logout:</h6>
                         <a class="dropdown-item" href="login.html">Logout</a>
@@ -111,16 +106,15 @@
                     <div class="card mb-3">
                         <div class="card-header">
                             <i class="fas fa-table"></i>
-                            Data Customer</div>
+                            Data Site</div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Customer ID</th>
-                                            <th>Name</th>
                                             <th>Site ID</th>
+                                            <th>Site Name</th>
                                             <th>Status</th>
                                             <th></th>
                                         </tr>
@@ -128,22 +122,16 @@
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
-                                            <th>Customer ID</th>
-                                            <th>Name</th>
-                                            <th>Site</th>
+                                            <th>Site ID</th>
+                                            <th>Site Name</th>
                                             <th>Status</th>
                                             <th></th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <%
-            int i = 1;
-                for (Customer customer : cc.binding()) {
-                                        %>
                                         <tr>
-                                            <td><%= i%></td>
-                                            <td><%= customer.getId()%></td>
-                                            <td><%= customer.getNama()%></td>
+                                            <td></td>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td>
@@ -152,10 +140,6 @@
                                     
                                     </td>
                                     </tr>
-                                    <%
-    i++;
-}
-                                    %>
                                     </tbody>
                                 </table>
                             </div>

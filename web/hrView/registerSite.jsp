@@ -1,3 +1,10 @@
+<%-- 
+    Document   : register
+    Created on : Aug 14, 2018, 5:06:41 AM
+    Author     : Dayinta Warih Wulandari
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,3 +94,4 @@
   </body>
 
 </html>
+
