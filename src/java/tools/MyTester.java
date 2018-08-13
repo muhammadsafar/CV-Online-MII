@@ -44,19 +44,21 @@ public class MyTester {
 //            
 //        }
 
-//          AppDevController adc = new AppDevController(HibernateUtil.getSessionFactory());
-//          
-//          for (AppDev appDev : adc.binding()) {
-//              
-//              System.out.println(appDev.getNama()+"---"+appDev.getAlamat()+"---"+appDev.getNationality());
-//            
-//        }
+          AppDevController adc = new AppDevController(HibernateUtil.getSessionFactory());
+          
+          for (AppDev appDev : adc.binding()) {
+              
+              System.out.println(appDev.getNama()+"---"+appDev.getAlamat()+"---"+appDev.getNationality());
+            
+        }
 
         SiteController sc = new SiteController(HibernateUtil.getSessionFactory());
         
         for (Site site : sc.binding()) {
             System.out.println(site.getStatus()+"--"+site.getSite());
         }
+        
+        
         
     }
 }
