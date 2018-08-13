@@ -40,6 +40,11 @@ public class AppDevController {
         return this.appDevDAO.insertOrUpdate(appDev);
     }
     
+    /**
+     * 
+     * @param dataAwal
+     * @return 
+     */
     public List<AppDev> convertApp(List<Object> dataAwal){
         List<AppDev> dataApp = new ArrayList<>();
         for (Object object : dataAwal) {
@@ -55,12 +60,25 @@ public class AppDevController {
         return this.convertApp(this.appDevDAO.getAll());
     }
     
+    /**
+     * 
+     * @param category
+     * @param data
+     * @return 
+     */
     public List<AppDev> find(String category, String data){
         return this.convertApp(this.appDevDAO.search(category, data));
     } 
     
+    /**
+     * 
+     * @param appId
+     * @return 
+     */
     public AppDev getById(String appId){
         return this.appDevDAO.getAppDevByAId(appId);
     }
+    
+    
     
 }
