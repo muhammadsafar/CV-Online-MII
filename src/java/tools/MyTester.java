@@ -14,6 +14,7 @@ import controllers.HrController;
 import controllers.EducationController;
 
 import entities.AppDev;
+import entities.Award;
 import entities.Customer;
 import entities.Role;
 import entities.Site;
@@ -29,36 +30,12 @@ public class MyTester {
         HibernateUtil hibernateUtil = new HibernateUtil();
         System.out.println(HibernateUtil.getSessionFactory());
         
-//        RoleController rc = new RoleController(HibernateUtil.getSessionFactory());
-//        
-//        for (Role role : rc.binding()) {
-//            
-//            System.out.println(role.getId()+"___"+role.getRole());
-//            
-//        }
-//        
-//        CustomerController cc = new CustomerController(HibernateUtil.getSessionFactory());
-//          
-//        for (Customer customer : cc.binding()) {
-//            System.out.println(customer.getNama()+""+customer.getPassword());
-//            
-//        }
-
-          AppDevController adc = new AppDevController(HibernateUtil.getSessionFactory());
-          
-          for (AppDev appDev : adc.binding()) {
-              
-              System.out.println(appDev.getNama()+"---"+appDev.getAlamat()+"---"+appDev.getNationality());
+        
+        AwardController ac = new AwardController(HibernateUtil.getSessionFactory());
+        
+        for (Award award : ac.binding()) {
             
+            System.out.println("Award name :"+award.getAwardName()+"====award Id: "+award.getId());
         }
-
-        SiteController sc = new SiteController(HibernateUtil.getSessionFactory());
-        
-        for (Site site : sc.binding()) {
-            System.out.println(site.getStatus()+"--"+site.getSite());
-        }
-        
-        
-        
     }
 }
