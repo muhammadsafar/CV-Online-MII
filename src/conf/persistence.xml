@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="CV_Online_MIIPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>entities.award</class>
+    <class>entities.foreignLanguage</class>
+    <class>entities.hr</class>
+    <class>entities.site</class>
+    <class>entities.techQualification</class>
+    <class>entities.appDev</class>
+    <class>entities.education</class>
+    <class>entities.religion</class>
+    <class>entities.experience</class>
+    <class>entities.role</class>
+    <class>entities.training</class>
+    <class>entities.customer</class>
+    <class>entities.oganization</class>
+    <class>entities.TechQualification</class>
+    <class>entities.Customer</class>
+    <class>entities.Education</class>
+    <class>entities.Experience</class>
+    <class>entities.Religion</class>
+    <class>entities.ForeignLanguage</class>
+    <class>entities.Training</class>
+    <class>entities.Hr</class>
+    <class>entities.Oganization</class>
+    <class>entities.Award</class>
+    <class>entities.AppDev</class>
+    <class>entities.Role</class>
+    <class>entities.Site</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+      <property name="javax.persistence.jdbc.user" value="system"/>
+      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
+      <property name="javax.persistence.jdbc.password" value="bismillah"/>
+    </properties>
+  </persistence-unit>
+</persistence>
