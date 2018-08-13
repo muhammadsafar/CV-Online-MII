@@ -16,6 +16,7 @@ import controllers.EducationController;
 import entities.AppDev;
 import entities.Customer;
 import entities.Role;
+import entities.Site;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 /**
@@ -51,7 +52,11 @@ public class MyTester {
 //            
 //        }
 
-        SiteController 
+        SiteController sc = new SiteController(HibernateUtil.getSessionFactory());
+        
+        for (Site site : sc.binding()) {
+            System.out.println(site.getStatus()+"--"+site.getSite());
+        }
         
     }
 }
