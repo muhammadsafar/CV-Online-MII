@@ -5,7 +5,7 @@
  */
 package daos;
 
-import entities.Oganization;
+import entities.Organization;
 import java.util.List;
 import org.hibernate.SessionFactory;
 
@@ -21,23 +21,23 @@ public class OrganizationDAO {
         this.fdao = new FunctionDAO(factory);
     }
     
-    public boolean insertOrUpdate(Oganization organization){
+    public boolean insertOrUpdate(Organization organization){
     
         return this.fdao.insertOrUpdate(organization);
     }
     
     public List<Object> getAll(){
     
-        return this.fdao.get("from Oganization");
+        return this.fdao.get("from Organization");
     }
     
-    public Oganization getOrganizationById(String organizationId){
+    public Organization getOrganizationById(String organizationId){
     
-        return (Oganization) this.fdao.getById("from Oganization where id = "+organizationId+"");
+        return (Organization) this.fdao.getById("from Organization where id = "+organizationId+"");
     }
     
     public List<Object> search(String category, String data){
     
-        return this.fdao.get("from Oganization where "+category+"like '%"+data+"%'");
+        return this.fdao.get("from Organization where "+category+"like '%"+data+"%'");
     }
 }

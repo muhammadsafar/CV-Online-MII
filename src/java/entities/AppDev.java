@@ -36,8 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "AppDev.findByNik", query = "SELECT a FROM AppDev a WHERE a.nik = :nik")
     , @NamedQuery(name = "AppDev.findByUsername", query = "SELECT a FROM AppDev a WHERE a.username = :username")
     , @NamedQuery(name = "AppDev.findByPassword", query = "SELECT a FROM AppDev a WHERE a.password = :password")
-    , @NamedQuery(name = "AppDev.findByName", query = "SELECT a FROM AppDev a WHERE a.name = :name")
-    , @NamedQuery(name = "AppDev.findByAddress", query = "SELECT a FROM AppDev a WHERE a.address = :address")
+    , @NamedQuery(name = "AppDev.findByNama", query = "SELECT a FROM AppDev a WHERE a.nama = :nama")
+    , @NamedQuery(name = "AppDev.findByAlamat", query = "SELECT a FROM AppDev a WHERE a.alamat = :alamat")
     , @NamedQuery(name = "AppDev.findByBirthday", query = "SELECT a FROM AppDev a WHERE a.birthday = :birthday")
     , @NamedQuery(name = "AppDev.findByNationality", query = "SELECT a FROM AppDev a WHERE a.nationality = :nationality")
     , @NamedQuery(name = "AppDev.findByMaritalStatus", query = "SELECT a FROM AppDev a WHERE a.maritalStatus = :maritalStatus")
@@ -57,10 +57,10 @@ public class AppDev implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
     @Basic(optional = false)
-    @Column(name = "NAME")
-    private String name;
-    @Column(name = "ADDRESS")
-    private String address;
+    @Column(name = "NAMA")
+    private String nama;
+    @Column(name = "ALAMAT")
+    private String alamat;
     @Column(name = "BIRTHDAY")
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthday;
@@ -73,11 +73,11 @@ public class AppDev implements Serializable {
     @Column(name = "STATUS")
     private String status;
     @ManyToMany(mappedBy = "appDevList", fetch = FetchType.LAZY)
-    private List<Oganization> oganizationList;
+    private List<Organization> organizationList;
     @ManyToMany(mappedBy = "appDevList", fetch = FetchType.LAZY)
     private List<Education> educationList;
     @ManyToMany(mappedBy = "appDevList", fetch = FetchType.LAZY)
-    private List<TechQualification> techQualificationList;
+    private List<TechnicalQualification> technicalQualificationList;
     @ManyToMany(mappedBy = "appDevList", fetch = FetchType.LAZY)
     private List<ForeignLanguage> foreignLanguageList;
     @JoinColumn(name = "RELIGION_ID", referencedColumnName = "ID")
@@ -90,15 +90,32 @@ public class AppDev implements Serializable {
     public AppDev() {
     }
 
+    public AppDev(String nik, String username, String password, String nama, String alamat, Date birthday, String nationality, String maritalStatus, String gender, String status, Religion religionId, Role roleId) {
+        this.nik = nik;
+        this.username = username;
+        this.password = password;
+        this.nama = nama;
+        this.alamat = alamat;
+        this.birthday = birthday;
+        this.nationality = nationality;
+        this.maritalStatus = maritalStatus;
+        this.gender = gender;
+        this.status = status;
+        this.religionId = religionId;
+        this.roleId = roleId;
+    }
+    
+    
+
     public AppDev(String nik) {
         this.nik = nik;
     }
 
-    public AppDev(String nik, String username, String password, String name) {
+    public AppDev(String nik, String username, String password, String nama) {
         this.nik = nik;
         this.username = username;
         this.password = password;
-        this.name = name;
+        this.nama = nama;
     }
 
     public String getNik() {
@@ -125,20 +142,20 @@ public class AppDev implements Serializable {
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String getNama() {
+        return nama;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAlamat() {
+        return alamat;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 
     public Date getBirthday() {
@@ -182,12 +199,12 @@ public class AppDev implements Serializable {
     }
 
     @XmlTransient
-    public List<Oganization> getOganizationList() {
-        return oganizationList;
+    public List<Organization> getOrganizationList() {
+        return organizationList;
     }
 
-    public void setOganizationList(List<Oganization> oganizationList) {
-        this.oganizationList = oganizationList;
+    public void setOrganizationList(List<Organization> organizationList) {
+        this.organizationList = organizationList;
     }
 
     @XmlTransient
@@ -200,12 +217,12 @@ public class AppDev implements Serializable {
     }
 
     @XmlTransient
-    public List<TechQualification> getTechQualificationList() {
-        return techQualificationList;
+    public List<TechnicalQualification> getTechnicalQualificationList() {
+        return technicalQualificationList;
     }
 
-    public void setTechQualificationList(List<TechQualification> techQualificationList) {
-        this.techQualificationList = techQualificationList;
+    public void setTechnicalQualificationList(List<TechnicalQualification> technicalQualificationList) {
+        this.technicalQualificationList = technicalQualificationList;
     }
 
     @XmlTransient

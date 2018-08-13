@@ -5,7 +5,7 @@
  */
 package daos;
 
-import entities.TechQualification;
+import entities.TechnicalQualification;
 import java.util.List;
 import org.hibernate.SessionFactory;
 
@@ -21,23 +21,23 @@ public class TechQualificationDAO {
         this.fdao = new FunctionDAO(factory);
     }
     
-    public boolean insertOrUpdate(TechQualification tq){
+    public boolean insertOrUpdate(TechnicalQualification tq){
     
         return this.fdao.insertOrUpdate(tq);
     }
     
     public List<Object> getAll(){
     
-        return this.fdao.get("from TechQualification");
+        return this.fdao.get("from TechnicalQualification");
     }
     
-    public TechQualification getTqById(String techId){
+    public TechnicalQualification getTqById(String techId){
     
-        return (TechQualification) this.fdao.getById("from TechQualification where id = "+techId+"");
+        return (TechnicalQualification) this.fdao.getById("from TechnicalQualification where id = "+techId+"");
     }
     
     public List<Object> search(String category, String data){
     
-        return this.fdao.get("from TechQualification where "+category+"like '%"+data+"%'");
+        return this.fdao.get("from TechnicalQualification where "+category+"like '%"+data+"%'");
     }
 }

@@ -46,10 +46,23 @@ Contributor(s):
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">system</property>
     <property name="hibernate.connection.password">bismillah</property>
-    <property name="hibernate.default_schema">cvonlinemii</property>
+    <property name="hibernate.default_schema">cvonline</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.connection.autocommit">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
+    <mapping class="entities.AppDev"/>
+    <mapping class="entities.Award"/>
+    <mapping class="entities.Customer"/>
+    <mapping class="entities.Education"/>
+    <mapping class="entities.Experience"/>
+    <mapping class="entities.ForeignLanguage"/>
+    <mapping class="entities.Hr"/>
+    <mapping class="entities.Organization"/>
+    <mapping class="entities.Religion"/>
+    <mapping class="entities.Role"/>
+    <mapping class="entities.Site"/>
+    <mapping class="entities.TechnicalQualification"/>
+    <mapping class="entities.Training"/>
   </session-factory>
 </hibernate-configuration>

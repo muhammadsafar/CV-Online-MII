@@ -6,7 +6,9 @@
 package controllers;
 
 import daos.TechQualificationDAO;
-import entities.TechQualification;
+import entities.TechnicalQualification;
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.SessionFactory;
 
 /**
@@ -25,7 +27,28 @@ public class TechQualificationController {
     }
     
     public boolean saveOrEdit(String id, String tq){
-        TechQualification tq1 = new TechQualification
+        TechnicalQualification tq1 = new TechnicalQualification(Long.parseLong(id), tq);
+        return this.tqdao.insertOrUpdate(tq1);
     }
     
+    public List<TechnicalQualification> convertTqList(List<Object> dataAwal){
+        List<TechnicalQualification> dataTech = new ArrayList<>();
+        for (Object object : dataAwal) {
+            TechnicalQualification tq = (TechnicalQualification) object;
+            dataTech.add(tq);
+        }
+       return dataTech;
+    }
+    
+    public List<TechnicalQualification> binding(){
+        return this.convertTqList(this.tqdao.getAll());
+    }
+    
+    public List<TechnicalQualification> find(String category, String data){
+        return this.convertTqList(this.tqdao.search(category, data));
+    }
+    
+    public TechnicalQualification getById(String techId){
+        return this.tqdao.getTqById(techId);
+    }
 }

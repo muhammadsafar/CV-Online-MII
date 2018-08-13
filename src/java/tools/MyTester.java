@@ -5,6 +5,17 @@
  */
 package tools;
 
+import controllers.AppDevController;
+import controllers.CustomerController;
+import controllers.RoleController;
+import controllers.SiteController;
+import controllers.AwardController;
+import controllers.HrController;
+import controllers.EducationController;
+
+import entities.AppDev;
+import entities.Customer;
+import entities.Role;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 /**
@@ -16,5 +27,31 @@ public class MyTester {
         
         HibernateUtil hibernateUtil = new HibernateUtil();
         System.out.println(HibernateUtil.getSessionFactory());
+        
+//        RoleController rc = new RoleController(HibernateUtil.getSessionFactory());
+//        
+//        for (Role role : rc.binding()) {
+//            
+//            System.out.println(role.getId()+"___"+role.getRole());
+//            
+//        }
+//        
+//        CustomerController cc = new CustomerController(HibernateUtil.getSessionFactory());
+//          
+//        for (Customer customer : cc.binding()) {
+//            System.out.println(customer.getNama()+""+customer.getPassword());
+//            
+//        }
+
+//          AppDevController adc = new AppDevController(HibernateUtil.getSessionFactory());
+//          
+//          for (AppDev appDev : adc.binding()) {
+//              
+//              System.out.println(appDev.getNama()+"---"+appDev.getAlamat()+"---"+appDev.getNationality());
+//            
+//        }
+
+        SiteController 
+        
     }
 }

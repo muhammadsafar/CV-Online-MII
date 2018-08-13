@@ -36,16 +36,15 @@ public class Experience implements Serializable {
     @Column(name = "EXPERIENCE")
     private String experience;
 
+    public Experience() {
+    }
+
     public Experience(Long id, String experience) {
         this.id = id;
         this.experience = experience;
     }
-    
-    
 
-    public Experience() {
-    }
-
+    
     public Experience(Long id) {
         this.id = id;
     }

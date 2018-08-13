@@ -47,14 +47,15 @@ public class Education implements Serializable {
     @ManyToMany(fetch = FetchType.LAZY)
     private List<AppDev> appDevList;
 
+    public Education() {
+    }
+
     public Education(Long id, String education) {
         this.id = id;
         this.education = education;
     }
-
     
-    public Education() {
-    }
+    
 
     public Education(Long id) {
         this.id = id;

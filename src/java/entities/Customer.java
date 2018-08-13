@@ -38,18 +38,24 @@ public class Customer implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private String id;
+    @Basic(optional = false)
     @Column(name = "NAMA")
     private String nama;
+    @Basic(optional = false)
     @Column(name = "USERNAME")
     private String username;
+    @Basic(optional = false)
     @Column(name = "PASSWORD")
     private String password;
     @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Role roleId;
     @JoinColumn(name = "SITE_ID", referencedColumnName = "ID")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Site siteId;
+
+    public Customer() {
+    }
 
     public Customer(String id, String nama, String username, String password, Role roleId, Site siteId) {
         this.id = id;
@@ -59,13 +65,17 @@ public class Customer implements Serializable {
         this.roleId = roleId;
         this.siteId = siteId;
     }
-
     
-    public Customer() {
-    }
 
     public Customer(String id) {
         this.id = id;
+    }
+
+    public Customer(String id, String nama, String username, String password) {
+        this.id = id;
+        this.nama = nama;
+        this.username = username;
+        this.password = password;
     }
 
     public String getId() {

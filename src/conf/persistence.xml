@@ -28,6 +28,8 @@
     <class>entities.AppDev</class>
     <class>entities.Role</class>
     <class>entities.Site</class>
+    <class>entities.Organization</class>
+    <class>entities.TechnicalQualification</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>

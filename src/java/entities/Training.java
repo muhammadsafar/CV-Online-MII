@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Training.findAll", query = "SELECT t FROM Training t")
     , @NamedQuery(name = "Training.findById", query = "SELECT t FROM Training t WHERE t.id = :id")
-    , @NamedQuery(name = "Training.findByTraining", query = "SELECT t FROM Training t WHERE t.training = :training")})
+    , @NamedQuery(name = "Training.findByTrainingName", query = "SELECT t FROM Training t WHERE t.trainingName = :trainingName")})
 public class Training implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,12 +33,18 @@ public class Training implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Column(name = "TRAINING")
-    private String training;
+    @Column(name = "TRAINING_NAME")
+    private String trainingName;
 
     public Training() {
     }
 
+    public Training(Long id, String trainingName) {
+        this.id = id;
+        this.trainingName = trainingName;
+    }
+
+    
     public Training(Long id) {
         this.id = id;
     }
@@ -51,12 +57,12 @@ public class Training implements Serializable {
         this.id = id;
     }
 
-    public String getTraining() {
-        return training;
+    public String getTrainingName() {
+        return trainingName;
     }
 
-    public void setTraining(String training) {
-        this.training = training;
+    public void setTrainingName(String trainingName) {
+        this.trainingName = trainingName;
     }
 
     @Override

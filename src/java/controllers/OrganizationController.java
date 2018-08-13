@@ -6,7 +6,7 @@
 package controllers;
 
 import daos.OrganizationDAO;
-import entities.Oganization;
+import entities.Organization;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.SessionFactory;
@@ -24,29 +24,29 @@ public class OrganizationController {
     }
     
     public boolean saveOrEdit(String id, String org){
-        Oganization oganization = new Oganization(Long.parseLong(id), org);
+        Organization oganization = new Organization(Long.parseLong(id), org);
         return this.odao.insertOrUpdate(oganization);
     }
     
-    public List<Oganization> convertOrgList(List<Object> dataAwal){
-        List<Oganization> dataOrg = new ArrayList<>();
+    public List<Organization> convertOrgList(List<Object> dataAwal){
+        List<Organization> dataOrg = new ArrayList<>();
         for (Object object : dataAwal) {
-            Oganization oganization = (Oganization) object;
+            Organization oganization = (Organization) object;
             dataOrg.add(oganization);
         }
         
         return dataOrg;
     }
     
-    public List<Oganization> binding(){
+    public List<Organization> binding(){
         return this.convertOrgList(this.odao.getAll());
     }
     
-    public List<Oganization> find(String category, String data){
+    public List<Organization> find(String category, String data){
         return this.convertOrgList(this.odao.search(category, data));
     }
     
-    public Oganization getById(String orgId){
+    public Organization getById(String orgId){
         return this.odao.getOrganizationById(orgId);
     
     }

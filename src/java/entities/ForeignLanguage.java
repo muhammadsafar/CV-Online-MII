@@ -54,8 +54,9 @@ public class ForeignLanguage implements Serializable {
         this.id = id;
         this.language = language;
     }
-
     
+    
+
     public ForeignLanguage(Integer id) {
         this.id = id;
     }

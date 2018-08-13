@@ -8,6 +8,7 @@ package entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,24 +39,26 @@ public class Site implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private String id;
+    @Basic(optional = false)
     @Column(name = "SITE")
     private String site;
+    @Basic(optional = false)
     @Column(name = "STATUS")
-    private Short status;
-    @OneToMany(mappedBy = "siteId", fetch = FetchType.LAZY)
+    private short status;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "siteId", fetch = FetchType.LAZY)
     private List<Customer> customerList;
-
-    public Site(String id, String site, Short status) {
-        this.id = id;
-        this.site = site;
-        this.status = status;
-    }
 
     public Site() {
     }
 
     public Site(String id) {
         this.id = id;
+    }
+
+    public Site(String id, String site, short status) {
+        this.id = id;
+        this.site = site;
+        this.status = status;
     }
 
     public String getId() {
@@ -74,11 +77,11 @@ public class Site implements Serializable {
         this.site = site;
     }
 
-    public Short getStatus() {
+    public short getStatus() {
         return status;
     }
 
-    public void setStatus(Short status) {
+    public void setStatus(short status) {
         this.status = status;
     }
 

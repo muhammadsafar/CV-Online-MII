@@ -43,14 +43,14 @@ public class Religion implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "religionId", fetch = FetchType.LAZY)
     private List<AppDev> appDevList;
 
+    public Religion() {
+    }
+
     public Religion(Short id, String religion) {
         this.id = id;
         this.religion = religion;
     }
-
     
-    public Religion() {
-    }
 
     public Religion(Short id) {
         this.id = id;

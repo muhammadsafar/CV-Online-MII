@@ -26,38 +26,37 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author MUHAMMAD BIN ZANDRA
  */
 @Entity
-@Table(name = "OGANIZATION")
+@Table(name = "ORGANIZATION")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Oganization.findAll", query = "SELECT o FROM Oganization o")
-    , @NamedQuery(name = "Oganization.findById", query = "SELECT o FROM Oganization o WHERE o.id = :id")
-    , @NamedQuery(name = "Oganization.findByOrganization", query = "SELECT o FROM Oganization o WHERE o.organization = :organization")})
-public class Oganization implements Serializable {
+    @NamedQuery(name = "Organization.findAll", query = "SELECT o FROM Organization o")
+    , @NamedQuery(name = "Organization.findById", query = "SELECT o FROM Organization o WHERE o.id = :id")
+    , @NamedQuery(name = "Organization.findByOrganizationName", query = "SELECT o FROM Organization o WHERE o.organizationName = :organizationName")})
+public class Organization implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Column(name = "ORGANIZATION")
-    private String organization;
+    @Column(name = "ORGANIZATION_NAME")
+    private String organizationName;
     @JoinTable(name = "ORGANIZATION_AD", joinColumns = {
         @JoinColumn(name = "ORGANIZATION_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "AD_ID", referencedColumnName = "NIK")})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<AppDev> appDevList;
 
-    public Oganization() {
+    public Organization() {
     }
 
-    public Oganization(Long id, String organization) {
+    public Organization(Long id, String organizationName) {
         this.id = id;
-        this.organization = organization;
+        this.organizationName = organizationName;
     }
     
-    
 
-    public Oganization(Long id) {
+    public Organization(Long id) {
         this.id = id;
     }
 
@@ -69,12 +68,12 @@ public class Oganization implements Serializable {
         this.id = id;
     }
 
-    public String getOrganization() {
-        return organization;
+    public String getOrganizationName() {
+        return organizationName;
     }
 
-    public void setOrganization(String organization) {
-        this.organization = organization;
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
     }
 
     @XmlTransient
@@ -96,10 +95,10 @@ public class Oganization implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Oganization)) {
+        if (!(object instanceof Organization)) {
             return false;
         }
-        Oganization other = (Oganization) object;
+        Organization other = (Organization) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -108,7 +107,7 @@ public class Oganization implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Oganization[ id=" + id + " ]";
+        return "entities.Organization[ id=" + id + " ]";
     }
     
 }

@@ -26,31 +26,37 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author MUHAMMAD BIN ZANDRA
  */
 @Entity
-@Table(name = "TECH_QUALIFICATION")
+@Table(name = "TECHNICAL_QUALIFICATION")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TechQualification.findAll", query = "SELECT t FROM TechQualification t")
-    , @NamedQuery(name = "TechQualification.findById", query = "SELECT t FROM TechQualification t WHERE t.id = :id")
-    , @NamedQuery(name = "TechQualification.findByTechQualification", query = "SELECT t FROM TechQualification t WHERE t.techQualification = :techQualification")})
-public class TechQualification implements Serializable {
+    @NamedQuery(name = "TechnicalQualification.findAll", query = "SELECT t FROM TechnicalQualification t")
+    , @NamedQuery(name = "TechnicalQualification.findById", query = "SELECT t FROM TechnicalQualification t WHERE t.id = :id")
+    , @NamedQuery(name = "TechnicalQualification.findByTecQualification", query = "SELECT t FROM TechnicalQualification t WHERE t.tecQualification = :tecQualification")})
+public class TechnicalQualification implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Column(name = "TECH_QUALIFICATION")
-    private String techQualification;
+    @Column(name = "TEC_QUALIFICATION")
+    private String tecQualification;
     @JoinTable(name = "TECHNICAL_AD", joinColumns = {
-        @JoinColumn(name = "TECH_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
+        @JoinColumn(name = "TEC_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
         @JoinColumn(name = "AD_ID", referencedColumnName = "NIK")})
     @ManyToMany(fetch = FetchType.LAZY)
     private List<AppDev> appDevList;
 
-    public TechQualification() {
+    public TechnicalQualification() {
     }
 
-    public TechQualification(Long id) {
+    public TechnicalQualification(Long id, String tecQualification) {
+        this.id = id;
+        this.tecQualification = tecQualification;
+    }
+
+    
+    public TechnicalQualification(Long id) {
         this.id = id;
     }
 
@@ -62,12 +68,12 @@ public class TechQualification implements Serializable {
         this.id = id;
     }
 
-    public String getTechQualification() {
-        return techQualification;
+    public String getTecQualification() {
+        return tecQualification;
     }
 
-    public void setTechQualification(String techQualification) {
-        this.techQualification = techQualification;
+    public void setTecQualification(String tecQualification) {
+        this.tecQualification = tecQualification;
     }
 
     @XmlTransient
@@ -89,10 +95,10 @@ public class TechQualification implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TechQualification)) {
+        if (!(object instanceof TechnicalQualification)) {
             return false;
         }
-        TechQualification other = (TechQualification) object;
+        TechnicalQualification other = (TechnicalQualification) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -101,7 +107,7 @@ public class TechQualification implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.TechQualification[ id=" + id + " ]";
+        return "entities.TechnicalQualification[ id=" + id + " ]";
     }
     
 }

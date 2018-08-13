@@ -28,7 +28,7 @@ public class RoleDAO {
     
     public List<Object> getAll(){
     
-        return this.fdao.get("from Role");
+        return this.fdao.get("FROM Role");
     }
     
     public Role getRoleById(String roleId){

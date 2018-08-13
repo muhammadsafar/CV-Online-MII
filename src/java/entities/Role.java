@@ -43,13 +43,11 @@ public class Role implements Serializable {
     private String role;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleId", fetch = FetchType.LAZY)
     private List<Hr> hrList;
-    @OneToMany(mappedBy = "roleId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleId", fetch = FetchType.LAZY)
     private List<Customer> customerList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "roleId", fetch = FetchType.LAZY)
     private List<AppDev> appDevList;
 
-    
-    
     public Role() {
     }
 

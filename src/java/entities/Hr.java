@@ -51,6 +51,9 @@ public class Hr implements Serializable {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Role roleId;
 
+    public Hr() {
+    }
+
     public Hr(String nik, String nama, String username, String password, Role roleId) {
         this.nik = nik;
         this.nama = nama;
@@ -58,9 +61,8 @@ public class Hr implements Serializable {
         this.password = password;
         this.roleId = roleId;
     }
-
-    public Hr() {
-    }
+    
+    
 
     public Hr(String nik) {
         this.nik = nik;

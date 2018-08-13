@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Award.findAll", query = "SELECT a FROM Award a")
     , @NamedQuery(name = "Award.findById", query = "SELECT a FROM Award a WHERE a.id = :id")
-    , @NamedQuery(name = "Award.findByAward", query = "SELECT a FROM Award a WHERE a.award = :award")})
+    , @NamedQuery(name = "Award.findByAwardName", query = "SELECT a FROM Award a WHERE a.awardName = :awardName")})
 public class Award implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,17 +33,17 @@ public class Award implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID")
     private Long id;
-    @Column(name = "AWARD")
-    private String award;
+    @Column(name = "AWARD_NAME")
+    private String awardName;
 
-    public Award(Long id, String award) {
-        this.id = id;
-        this.award = award;
-    }
-
-    
     public Award() {
     }
+
+    public Award(Long id, String awardName) {
+        this.id = id;
+        this.awardName = awardName;
+    }
+    
 
     public Award(Long id) {
         this.id = id;
@@ -57,12 +57,12 @@ public class Award implements Serializable {
         this.id = id;
     }
 
-    public String getAward() {
-        return award;
+    public String getAwardName() {
+        return awardName;
     }
 
-    public void setAward(String award) {
-        this.award = award;
+    public void setAwardName(String awardName) {
+        this.awardName = awardName;
     }
 
     @Override
