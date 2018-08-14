@@ -1,6 +1,6 @@
 <%-- 
-    Document   : registerHRandAD
-    Created on : Aug 14, 2018, 5:21:28 AM
+    Document   : registerCustomer
+    Created on : Aug 14, 2018, 5:20:41 AM
     Author     : Dayinta Warih Wulandari
 --%>
 
@@ -16,7 +16,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Register</title>
+        <title>HR - Register HR and Application Developer</title>
 
         <!-- Bootstrap core CSS-->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,15 +33,9 @@
 
         <div class="container">
             <div class="card card-register mx-auto mt-5">
-                <div class="card-header">Register an Account</div>
+                <div class="card-header">Register a Customer</div>
                 <div class="card-body">
                     <form>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" id="name" class="form-control" placeholder="NIK" required="required">
-                                <label for="nik">NIK</label>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <div class="form-label-group">
                                 <input type="text" id="name" class="form-control" placeholder="Name" required="required">
@@ -73,10 +67,10 @@
 
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Role</button>
+                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Site</button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Human Resource</a>
-                                    <a class="dropdown-item" href="#">Application Developer</a>
+                                    <a class="dropdown-item" href="#">PLN</a>
+                                    <a class="dropdown-item" href="#">BPJS</a>
                                 </div>
                             </div>
                             <input type="text" class="form-control" aria-label="Text input with dropdown button">
@@ -97,4 +91,3 @@
     </body>
 
 </html>
-

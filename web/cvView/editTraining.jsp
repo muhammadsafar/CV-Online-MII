@@ -1,6 +1,6 @@
 <%-- 
-    Document   : registerCustomer
-    Created on : Aug 14, 2018, 5:20:41 AM
+    Document   : editTraining
+    Created on : Aug 15, 2018, 4:48:20 AM
     Author     : Dayinta Warih Wulandari
 --%>
 
