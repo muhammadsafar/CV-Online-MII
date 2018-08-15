@@ -3,7 +3,9 @@
     Created on : Aug 14, 2018, 4:58:52 AM
     Author     : Dayinta Warih Wulandari
 --%>
-
+<%@page import="entities.Site"%>
+<%@page import="controllers.SiteController"%>
+<%@page import="tools.HibernateUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,33 +32,27 @@
         <link href="css/sb-admin.css" rel="stylesheet">
 
     </head>
-
+    <% SiteController sc = new SiteController(HibernateUtil.getSessionFactory()); %>
     <body id="page-top">
-        <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+        <nav class="navbar navbar-expand navbar-dark static-top" style="background: #bd5d38">
 
             <a class="navbar-brand mr-1" href="mainHR.jsp">CV ONLINE</a>
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
             </button>
-      <!-- Navbar -->
+      <!-- Logo -->
       <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">Profile</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-          </div>
-        </li>
+                <span class="d-none d-lg-block">
+                    <img alt="brand" src="image/mii.png" width="100" height="70">
+                    <img alt="brand" src="image/metrodata.png" width="60" height="70">
+                </span>
       </ul>
         </nav>
 
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="sidebar navbar-nav">
+            <ul class="sidebar navbar-nav" style="background: #bd5d38">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-folder"></i>
@@ -64,10 +60,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                         <h6 class="dropdown-header">Add data:</h6>
-                        <a class="dropdown-item" href="?">Site</a>
-                        <a class="dropdown-item" href="?">Customer</a>
-                        <a class="dropdown-item" href="?">HR</a>
-                        <a class="dropdown-item" href="?">Application Developer</a>
+                        <a class="dropdown-item" href="registerSite.jsp">Site</a>
+                        <a class="dropdown-item" href="registerCustomer.jsp">Customer</a>
+                        <a class="dropdown-item" href="registerHR.jsp">HR</a>
+                        <a class="dropdown-item" href="registerAD.jsp">Application Developer</a>
                         <div class="dropdown-divider"></div>
                         <h6 class="dropdown-header">Logout:</h6>
                         <a class="dropdown-item" href="login.html">Logout</a>
@@ -129,17 +125,25 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <%
+                                            int i = 1;
+                                            for (Site site : sc.binding()){
+                                        %>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><%= i %></td>
+                                            <td><%= site.getId() %></td>
+                                            <td><%= site.getSite() %></td>
+                                            <td><%= site.getStatus() %></td>
                                             <td>
-                                                <a href="?" class="btn btn-outline-secondary btn-sm">Detail</a>
+                                                <a href="?" class="btn btn-outline-secondary btn-sm">Non Aktif</a>
                                             </td>
                                     
                                     </td>
                                     </tr>
+                                    <%
+                                    i++;
+                                    }
+                                    %>
                                     </tbody>
                                 </table>
                             </div>

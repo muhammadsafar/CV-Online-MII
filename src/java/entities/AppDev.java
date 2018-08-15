@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,11 +21,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "APP_DEV")
@@ -42,7 +40,10 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "AppDev.findByNationality", query = "SELECT a FROM AppDev a WHERE a.nationality = :nationality")
     , @NamedQuery(name = "AppDev.findByMaritalStatus", query = "SELECT a FROM AppDev a WHERE a.maritalStatus = :maritalStatus")
     , @NamedQuery(name = "AppDev.findByGender", query = "SELECT a FROM AppDev a WHERE a.gender = :gender")
-    , @NamedQuery(name = "AppDev.findByStatus", query = "SELECT a FROM AppDev a WHERE a.status = :status")})
+    , @NamedQuery(name = "AppDev.findByStatus", query = "SELECT a FROM AppDev a WHERE a.status = :status")
+    , @NamedQuery(name = "AppDev.findByNohp", query = "SELECT a FROM AppDev a WHERE a.nohp = :nohp")
+    , @NamedQuery(name = "AppDev.findByEmail", query = "SELECT a FROM AppDev a WHERE a.email = :email")
+    , @NamedQuery(name = "AppDev.findByPicture", query = "SELECT a FROM AppDev a WHERE a.picture = :picture")})
 public class AppDev implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -72,14 +73,12 @@ public class AppDev implements Serializable {
     private String gender;
     @Column(name = "STATUS")
     private String status;
-    @ManyToMany(mappedBy = "appDevList", fetch = FetchType.LAZY)
-    private List<Organization> organizationList;
-    @ManyToMany(mappedBy = "appDevList", fetch = FetchType.LAZY)
-    private List<Education> educationList;
-    @ManyToMany(mappedBy = "appDevList", fetch = FetchType.LAZY)
-    private List<TechnicalQualification> technicalQualificationList;
-    @ManyToMany(mappedBy = "appDevList", fetch = FetchType.LAZY)
-    private List<ForeignLanguage> foreignLanguageList;
+    @Column(name = "NOHP")
+    private String nohp;
+    @Column(name = "EMAIL")
+    private String email;
+    @Column(name = "PICTURE")
+    private String picture;
     @JoinColumn(name = "RELIGION_ID", referencedColumnName = "ID")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Religion religionId;
@@ -90,7 +89,7 @@ public class AppDev implements Serializable {
     public AppDev() {
     }
 
-    public AppDev(String nik, String username, String password, String nama, String alamat, Date birthday, String nationality, String maritalStatus, String gender, String status, Religion religionId, Role roleId) {
+    public AppDev(String nik, String username, String password, String nama, String alamat, Date birthday, String nationality, String maritalStatus, String gender, String status, String nohp, String email, String picture, Role roleId, Religion religionId) {
         this.nik = nik;
         this.username = username;
         this.password = password;
@@ -101,11 +100,12 @@ public class AppDev implements Serializable {
         this.maritalStatus = maritalStatus;
         this.gender = gender;
         this.status = status;
-        this.religionId = religionId;
+        this.nohp = nohp;
+        this.email = email;
+        this.picture = picture;
         this.roleId = roleId;
-    }
-    
-    
+        this.religionId = religionId;
+    }    
 
     public AppDev(String nik) {
         this.nik = nik;
@@ -198,40 +198,28 @@ public class AppDev implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
-    public List<Organization> getOrganizationList() {
-        return organizationList;
+    public String getNohp() {
+        return nohp;
     }
 
-    public void setOrganizationList(List<Organization> organizationList) {
-        this.organizationList = organizationList;
+    public void setNohp(String nohp) {
+        this.nohp = nohp;
     }
 
-    @XmlTransient
-    public List<Education> getEducationList() {
-        return educationList;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEducationList(List<Education> educationList) {
-        this.educationList = educationList;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    @XmlTransient
-    public List<TechnicalQualification> getTechnicalQualificationList() {
-        return technicalQualificationList;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setTechnicalQualificationList(List<TechnicalQualification> technicalQualificationList) {
-        this.technicalQualificationList = technicalQualificationList;
-    }
-
-    @XmlTransient
-    public List<ForeignLanguage> getForeignLanguageList() {
-        return foreignLanguageList;
-    }
-
-    public void setForeignLanguageList(List<ForeignLanguage> foreignLanguageList) {
-        this.foreignLanguageList = foreignLanguageList;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public Religion getReligionId() {
@@ -274,5 +262,5 @@ public class AppDev implements Serializable {
     public String toString() {
         return "entities.AppDev[ nik=" + nik + " ]";
     }
-    
+
 }

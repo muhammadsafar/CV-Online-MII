@@ -6,6 +6,7 @@
 package daos;
 
 import entities.Site;
+import java.sql.CallableStatement;
 import java.util.List;
 import org.hibernate.SessionFactory;
 
@@ -16,13 +17,23 @@ import org.hibernate.SessionFactory;
 public class SiteDAO {
     
     public FunctionDAO fdao;
+    private SessionFactory factory;
 
     public SiteDAO(SessionFactory factory) {
         this.fdao = new FunctionDAO(factory);
+        this.factory = factory;
     }
 
     public boolean insertOrUpdate(Site site){
         return this.fdao.insertOrUpdate(site);
+    }
+    public boolean executeProcedure(String query){
+        try {
+            //CallableStatement cs = factory.
+            
+        } catch (Exception e) {
+        }
+        return false;
     }
     
     public List<Object> getAll(){

@@ -25,6 +25,9 @@ public class CustomerDAO {
     }
     
     public List<Object> getAll(){
+//        return this.fdao.get("select c.id, c.nama, c.site_id, s.site"
+//                + "from Customer c join Site s"
+//                + "on c.site_id = s.id");
         return this.fdao.get("from Customer");
     }
     

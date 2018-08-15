@@ -1,6 +1,6 @@
 <%-- 
-    Document   : editTraining
-    Created on : Aug 15, 2018, 4:48:20 AM
+    Document   : addGeneral
+    Created on : Aug 15, 2018, 9:40:26 AM
     Author     : Dayinta Warih Wulandari
 --%>
 

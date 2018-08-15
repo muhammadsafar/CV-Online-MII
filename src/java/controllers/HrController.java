@@ -27,8 +27,8 @@ public class HrController {
     public HrController() {
     }
     
-    public boolean saveOrEdit(String nik, String nama, String username, String password, Role roleid){
-        Hr humanResearch = new Hr(nik, nama, username, password, roleid);
+    public boolean saveOrEdit(String nik, String nama, String username, String password, String roleid){
+        Hr humanResearch = new Hr(nik, nama, username, password, new Role(Long.parseLong(roleid), ""));
         return this.hrDAO.insertOrUpdate(humanResearch);
     }
     

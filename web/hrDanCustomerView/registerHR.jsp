@@ -16,7 +16,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>HR - Register HR and Application Developer</title>
+        <title>HR - Register HR</title>
 
         <!-- Bootstrap core CSS-->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +33,7 @@
 
         <div class="container">
             <div class="card card-register mx-auto mt-5">
-                <div class="card-header">Register an Account</div>
+                <div class="card-header">Register a HR</div>
                 <div class="card-body">
                     <form>
                         <div class="form-group">
@@ -69,17 +69,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Role</button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Human Resource</a>
-                                    <a class="dropdown-item" href="#">Application Developer</a>
-                                </div>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Text input with dropdown button">
                         </div>
                         <a class="btn btn-primary btn-block" href="mainHR.jsp">Register</a>
                     </form>

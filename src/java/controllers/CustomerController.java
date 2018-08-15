@@ -27,9 +27,10 @@ public class CustomerController {
     public CustomerController() {
     }
     
-    public boolean saveOrEdit(String id, String nama, String username, String pass, Role roleId, Site siteId){
+    public boolean saveOrEdit(String id, String nama, String username, String pass, String roleId, String siteId){
     
-        Customer customer = new Customer(id, nama, username, pass, roleId, siteId);
+        Customer customer = new Customer(id, nama, username, pass, new Role(Long.parseLong(roleId), ""), 
+                new Site(siteId, "", Short.parseShort("0")));
         return this.cdao.insertOrUpdate(customer);
     }
     

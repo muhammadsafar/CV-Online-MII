@@ -31,31 +31,25 @@
 
     </head>
     <body id="page-top">
-        <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+        <nav class="navbar navbar-expand navbar-dark static-top" style="background: #bd5d38">
 
             <a class="navbar-brand mr-1" href="mainCustomer.jsp">CV ONLINE</a>
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
             </button>
-      <!-- Navbar -->
+      <!-- Logo -->
       <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">Profile</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-          </div>
-        </li>
+                <span class="d-none d-lg-block">
+                    <img alt="brand" src="image/mii.png" width="100" height="70">
+                    <img alt="brand" src="image/metrodata.png" width="60" height="70">
+                </span>
       </ul>
         </nav>
 
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="sidebar navbar-nav">
+            <ul class="sidebar navbar-nav" style="background: #bd5d38">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-folder"></i>

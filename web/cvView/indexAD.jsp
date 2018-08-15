@@ -3,7 +3,9 @@
     Created on : Aug 14, 2018, 10:44:42 AM
     Author     : Dayinta Warih Wulandari
 --%>
-
+<%@page import="entities.AppDev"%>
+<%@page import="controllers.AppDevController"%>
+<%@page import="tools.HibernateUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,12 +33,20 @@
     </head>
 
     <body id="page-top">
-
+        <%         AppDevController ac = new AppDevController(HibernateUtil.getSessionFactory());
+        for (AppDev appDev : ac.find("nik", "001100")) {
+        %>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-nav">
+                <span class="d-none d-lg-block">
+                    <img alt="brand" src="img/mii.png" width="100" height="70">
+                    <img alt="brand" src="img/metrodata.png" width="60" height="70">
+                </span>
+            </a>
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">Clarence Taylor</span>
                 <span class="d-none d-lg-block">
-                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/dayinta.jpg" alt="">
+                    <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src=<%= appDev.getPicture() %> alt="">
                 </span>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,23 +75,25 @@
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger" href="#organization">Organization</a>
                     </li>
-                </ul>
+                    <li class="nav-item">
+                        <u class="nav-link js-scroll-trigger text-dark" href="../hrDanCustomerView/login.html">LOGOUT</u>
+                    </li>
             </div>
         </nav>
 
         <div class="container-fluid p-0">
 
             <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-                <a href="?">edit</a>
+                <a href="addGeneral.jsp">edit</a>
                 <div class="my-auto">
-                    <h1 class="mb-0">Dayinta Warih Wulandari
+                    <h1 class="mb-0"><%= appDev.getNama() %>
                     </h1>
-                    <div class="subheading mb-5">3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 ·
-                        <a href="mailto:name@email.com">dayinta@email.com</a>
-                        <p>Marital Status: </p>
-                        <p>Religion: </p>
+                    <div class="subheading mb-5"><%= appDev.getAlamat() %> · <%= appDev.getNohp() %> ·
+                        <a href="mailto:name@email.com"><%= appDev.getEmail() %></a>
+                        <p>Marital Status: <%= appDev.getMaritalStatus() %></p>
+                        <p>Religion: <%= appDev.getReligionId().getReligion() %></p>
                         <p>Foreign Language: </p>
-                        <p>Status: </p>
+                        <p>Status: <%= appDev.getStatus() %></p>
                     </div>
                 </div>
             </section>
@@ -89,7 +101,7 @@
             <hr class="m-0">
 
             <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-                <a href="?">edit</a>
+                <a href="addExperience.jsp">edit</a>
                 <div class="my-auto">
                     <h2 class="mb-5">Experience</h2>
 
@@ -109,7 +121,7 @@
             <hr class="m-0">
 
             <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="tq">
-                <a href="?">edit</a>
+                <a href="addTQ.jsp">edit</a>
                 <div class="my-auto">
                     <h2 class="mb-5">Technical Qualification</h2>
                     <div class="subheading mb-3">Programming Languages &amp; Tools</div>
@@ -140,7 +152,7 @@
             <hr class="m-0">
 
             <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
-                <a href="?">edit</a>
+                <a href="addEducation.jsp">edit</a>
                 <div class="my-auto">
                     <h2 class="mb-5">Education</h2>
 
@@ -161,7 +173,7 @@
             <hr class="m-0">
 
             <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="training">
-                <a href="?">edit</a>
+                <a href="addTraining.jsp">edit</a>
                 <div class="my-auto">
                     <h2 class="mb-5">Training</h2>
                     <ul class="fa-ul mb-0">
@@ -175,7 +187,7 @@
             <hr class="m-0">
 
             <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="award">
-                <a href="?">edit</a>
+                <a href="addAward.jsp">edit</a>
                 <div class="my-auto">
                     <h2 class="mb-5">Award &amp; Certifications</h2>
                     <ul class="fa-ul mb-0">
@@ -200,7 +212,7 @@
             <hr class="m-0">
 
             <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="organization">
-                <a href="?">edit</a>
+                <a href="addOrganization.jsp">edit</a>
                 <div class="my-auto">
                     <h2 class="mb-5">Organization</h2>
                     <ul class="fa-ul mb-0">
@@ -222,7 +234,9 @@
 
         <!-- Custom scripts for this template -->
         <script src="js/resume.min.js"></script>
-
+        <%
+        }
+        %>
     </body>
 
 </html>

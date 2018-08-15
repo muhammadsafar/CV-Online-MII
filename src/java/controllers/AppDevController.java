@@ -10,6 +10,7 @@ import entities.AppDev;
 import entities.Religion;
 import entities.Role;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.SessionFactory;
 
@@ -29,13 +30,24 @@ public class AppDevController {
     }
     
     public boolean saveOrEdit(String nik, String username, String pass, String name, 
-            String address, String dob, String national, String marital, String gender, String status, 
-            Role roleId, Religion religionId){
+            String address, Date dob, String national, String marital, String gender, String status, 
+            String nope, String email, String pict, String roleId, String religionId){
         
-        AppDev appDev = new AppDev(nik, username, pass, name, address, java.sql.Date.valueOf(dob), 
-                national, marital, gender, status, 
-                religionId, 
-                roleId);
+        AppDev appDev = new AppDev(nik, 
+                username, 
+                pass, 
+                name, 
+                name, 
+                dob, 
+                national, 
+                marital, 
+                gender, 
+                status, 
+                nope, 
+                email, 
+                pict, 
+                new Role(Long.parseLong(roleId), ""), 
+                new Religion(Short.parseShort(religionId), ""));
         
         return this.appDevDAO.insertOrUpdate(appDev);
     }

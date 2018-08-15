@@ -31,7 +31,7 @@
 
     </head>
     <body id="page-top">
-        <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+        <nav class="navbar navbar-expand navbar-dark static-top" style="background: #bd5d38">
 
             <a class="navbar-brand mr-1" href="mainHR.jsp">CV ONLINE</a>
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
@@ -39,23 +39,17 @@
             </button>
       <!-- Navbar -->
       <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">Profile</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-          </div>
-        </li>
+                <span class="d-none d-lg-block">
+                    <img alt="brand" src="image/mii.png" width="100" height="70">
+                    <img alt="brand" src="image/metrodata.png" width="60" height="70">
+                </span>
       </ul>
         </nav>
 
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="sidebar navbar-nav">
+            <ul class="sidebar navbar-nav" style="background: #bd5d38">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-folder"></i>
@@ -65,8 +59,8 @@
                         <h6 class="dropdown-header">Add data:</h6>
                         <a class="dropdown-item" href="registerSite.jsp">Site</a>
                         <a class="dropdown-item" href="registerCustomer.jsp">Customer</a>
-                        <a class="dropdown-item" href="registerHRandAD.jsp">HR</a>
-                        <a class="dropdown-item" href="registerHRandAD.jsp">Application Developer</a>
+                        <a class="dropdown-item" href="registerHR.jsp">HR</a>
+                        <a class="dropdown-item" href="registerAD.jsp">Application Developer</a>
                         <div class="dropdown-divider"></div>
                         <h6 class="dropdown-header">Logout:</h6>
                         <a class="dropdown-item" href="login.html">Logout</a>
@@ -94,68 +88,17 @@
             <div id="content-wrapper">
 
                 <div class="container-fluid">
-
                     <!-- Breadcrumbs-->
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb" style="background:  beige;">
                         <li class="breadcrumb-item">
-                            <a href="adPage.jsp">Dashboard</a>
+                            <a href="adPage.jsp" style="color: unset;">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item active">Overview</li>
                     </ol>
-
-                    <!-- DataTables -->
-                    <div class="card mb-3">
-                        <div class="card-header">
-                            <i class="fas fa-table"></i>
-                            Main Menu</div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Customer ID</th>
-                                            <th>Name</th>
-                                            <th>Site ID</th>
-                                            <th>Status</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Customer ID</th>
-                                            <th>Name</th>
-                                            <th>Site</th>
-                                            <th>Status</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>
-                                                <a href="?" class="btn btn-outline-secondary btn-sm">Detail</a>
-                                            </td>
-
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                    </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
                 <!-- Sticky Footer -->
-                <footer class="sticky-footer">
+                <footer class="sticky-footer" style="background: local;">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
                             <span>Copyright © Ayin&Safar 2018</span>
