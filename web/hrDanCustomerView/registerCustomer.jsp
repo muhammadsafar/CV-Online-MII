@@ -3,7 +3,10 @@
     Created on : Aug 14, 2018, 5:20:41 AM
     Author     : Dayinta Warih Wulandari
 --%>
-
+<%@page import="entities.Site"%>
+<%@page import="controllers.SiteController"%>
+<%@page import="controllers.CustomerController"%>
+<%@page import="tools.HibernateUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +19,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>HR - Register HR and Application Developer</title>
+        <title>HR - Register Customer</title>
 
         <!-- Bootstrap core CSS-->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,52 +33,47 @@
     </head>
 
     <body class="bg-dark">
-
+    <% CustomerController cc = new CustomerController(HibernateUtil.getSessionFactory()); %>
         <div class="container">
             <div class="card card-register mx-auto mt-5">
                 <div class="card-header">Register a Customer</div>
                 <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+                    <form action="../registrasiCus" method="post">
+                        <div class="form-label-group">
+                            <div>
+                                <input type="hidden" id="name" name="id" class="form-control" placeholder="ID" value="<%= cc.autoId()%>">
+                            </div>
+                            <div>
                                 <label for="name">Name</label>
+                                <input type="text" id="name" name="nama" class="form-control" placeholder="Name" required="required">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control" placeholder="Username" required="required">
-                                <label for="username">Username</label>
+                        <div>
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="required">
+                        </div>
+                        <div>
+                            <div>
+                                <label for="password">Password</label>
+                                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="required">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                                        <label for="inputPassword">Password</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
-                                        <label for="confirmPassword">Confirm password</label>
-                                    </div>
-                                </div>
-                            </div>
+                        <p></p>
+                        <div>
+                            <label for="inputSite">Site</label>
+                            <select class="btn btn-outline-secondary dropdown-toggle" name="cbsite">
+                                <%
+                                    SiteController sc = new SiteController(HibernateUtil.getSessionFactory());
+                                    for (Site site : sc.binding()) {
+                                %>
+                                <option value="<%= site.getId()%>"><%= site.getSite()%></option>
+                                <%
+                                }
+                                %>
+                            </select>
                         </div>
-
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Site</button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">PLN</a>
-                                    <a class="dropdown-item" href="#">BPJS</a>
-                                </div>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                        </div>
-                        <a class="btn btn-primary btn-block" href="mainHR.jsp">Register</a>
+                        <p></p>
+                        <button class="btn btn-primary btn-block" type="submit">Add Customer</button>
                     </form>
                 </div>
             </div>

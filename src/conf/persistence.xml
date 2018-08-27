@@ -30,6 +30,14 @@
     <class>entities.Organization</class>
     <class>entities.TechnicalQualification</class>
     <class>entities.AppDev</class>
+    <class>entities.AwardAd</class>
+    <class>entities.AdSite</class>
+    <class>entities.EducationAd</class>
+    <class>entities.ExperienceAd</class>
+    <class>entities.TrainingAd</class>
+    <class>entities.OrganizationAd</class>
+    <class>entities.TechnicalAd</class>
+    <class>entities.LanguageAd</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>

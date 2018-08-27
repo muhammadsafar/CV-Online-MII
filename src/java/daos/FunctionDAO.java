@@ -7,8 +7,11 @@ package daos;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -34,7 +37,6 @@ public class FunctionDAO implements InterfaceDAO{
     
     @Override
     public boolean insertOrUpdate(Object object) {
-    
          boolean flag = false;
         try {
             this.session = this.factory.openSession();
@@ -52,7 +54,6 @@ public class FunctionDAO implements InterfaceDAO{
         }
         return flag;
     }
-
     
     @Override
     public boolean delete(String id) {
@@ -101,7 +102,41 @@ public class FunctionDAO implements InterfaceDAO{
     }
 
     @Override
-    public String getAutoId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object getAutoId(String query) {
+        Object data = new Object();
+        try {
+            this.session = this.factory.openSession();
+            this.transaction = this.session.beginTransaction();
+            data = this.session.createQuery(query).uniqueResult();
+            this.transaction.commit();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            if (this.transaction != null ){
+                this.transaction.rollback();
+            }
+        } finally {
+            this.session.close();
+        }
+        return data;
     }
+    
+        @Override
+        public boolean edit(Object object){
+         boolean flag = false;
+        try {
+            this.session = this.factory.openSession();
+            this.transaction = this.session.beginTransaction();
+            this.session.update(object);
+            this.transaction.commit();
+            flag = true;
+        } catch (HibernateException e) {
+            e.printStackTrace();
+            if (this.transaction != null) {
+                this.transaction.rollback();
+            }
+        } finally {
+            this.session.close();
+        }
+        return flag;
+        }
 }

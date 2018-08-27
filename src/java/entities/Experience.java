@@ -3,21 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.SessionFactory;
 
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "EXPERIENCE")
@@ -32,28 +37,32 @@ public class Experience implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
     @Column(name = "EXPERIENCE")
     private String experience;
+    @OneToMany(mappedBy = "exId")
+    private List<ExperienceAd> experienceAdList;
 
     public Experience() {
     }
 
-    public Experience(Long id, String experience) {
+    public Experience(SessionFactory factory) {
+    }
+
+    public Experience(Integer id, String experience) {
         this.id = id;
         this.experience = experience;
     }
-
     
-    public Experience(Long id) {
+    public Experience(Integer id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -63,6 +72,15 @@ public class Experience implements Serializable {
 
     public void setExperience(String experience) {
         this.experience = experience;
+    }
+
+    @XmlTransient
+    public List<ExperienceAd> getExperienceAdList() {
+        return experienceAdList;
+    }
+
+    public void setExperienceAdList(List<ExperienceAd> experienceAdList) {
+        this.experienceAdList = experienceAdList;
     }
 
     @Override
@@ -89,5 +107,5 @@ public class Experience implements Serializable {
     public String toString() {
         return "entities.Experience[ id=" + id + " ]";
     }
-    
+
 }

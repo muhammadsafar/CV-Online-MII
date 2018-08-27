@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
@@ -10,20 +11,17 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "FOREIGN_LANGUAGE")
@@ -41,25 +39,19 @@ public class ForeignLanguage implements Serializable {
     private Integer id;
     @Column(name = "LANGUAGE")
     private String language;
-    @JoinTable(name = "LANGUAGE_AD", joinColumns = {
-        @JoinColumn(name = "LANGUAGE_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "AD_ID", referencedColumnName = "NIK")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<AppDev> appDevList;
+    @OneToMany(mappedBy = "languageId")
+    private List<LanguageAd> languageAdList;
 
     public ForeignLanguage() {
     }
 
-    public ForeignLanguage(Integer id, String language) {
-        this.id = id;
-        this.language = language;
-    }
-    
-    
-
     public ForeignLanguage(Integer id) {
         this.id = id;
     }
+
+//    public ForeignLanguage(int parseInt, String fl) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     public Integer getId() {
         return id;
@@ -78,12 +70,12 @@ public class ForeignLanguage implements Serializable {
     }
 
     @XmlTransient
-    public List<AppDev> getAppDevList() {
-        return appDevList;
+    public List<LanguageAd> getLanguageAdList() {
+        return languageAdList;
     }
 
-    public void setAppDevList(List<AppDev> appDevList) {
-        this.appDevList = appDevList;
+    public void setLanguageAdList(List<LanguageAd> languageAdList) {
+        this.languageAdList = languageAdList;
     }
 
     @Override
@@ -110,5 +102,5 @@ public class ForeignLanguage implements Serializable {
     public String toString() {
         return "entities.ForeignLanguage[ id=" + id + " ]";
     }
-    
+
 }

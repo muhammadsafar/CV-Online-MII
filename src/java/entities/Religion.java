@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
@@ -11,7 +12,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,8 +21,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "RELIGION")
@@ -40,20 +40,19 @@ public class Religion implements Serializable {
     private Short id;
     @Column(name = "RELIGION")
     private String religion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "religionId", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "religionId")
     private List<AppDev> appDevList;
 
     public Religion() {
     }
 
+    public Religion(Short id) {
+        this.id = id;
+    }
+
     public Religion(Short id, String religion) {
         this.id = id;
         this.religion = religion;
-    }
-    
-
-    public Religion(Short id) {
-        this.id = id;
     }
 
     public Short getId() {
@@ -105,5 +104,5 @@ public class Religion implements Serializable {
     public String toString() {
         return "entities.Religion[ id=" + id + " ]";
     }
-    
+
 }

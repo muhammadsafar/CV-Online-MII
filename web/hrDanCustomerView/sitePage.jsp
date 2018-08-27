@@ -7,6 +7,7 @@
 <%@page import="controllers.SiteController"%>
 <%@page import="tools.HibernateUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,7 +35,7 @@
     </head>
     <% SiteController sc = new SiteController(HibernateUtil.getSessionFactory()); %>
     <body id="page-top">
-        <nav class="navbar navbar-expand navbar-dark static-top" style="background: #bd5d38">
+        <nav class="navbar navbar-expand navbar-dark static-top bg-dark" style="background: #bd5d38">
 
             <a class="navbar-brand mr-1" href="mainHR.jsp">CV ONLINE</a>
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
@@ -52,7 +53,7 @@
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="sidebar navbar-nav" style="background: #bd5d38">
+            <ul class="sidebar navbar-nav bg-dark">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-folder"></i>
@@ -62,11 +63,8 @@
                         <h6 class="dropdown-header">Add data:</h6>
                         <a class="dropdown-item" href="registerSite.jsp">Site</a>
                         <a class="dropdown-item" href="registerCustomer.jsp">Customer</a>
-                        <a class="dropdown-item" href="registerHR.jsp">HR</a>
                         <a class="dropdown-item" href="registerAD.jsp">Application Developer</a>
                         <div class="dropdown-divider"></div>
-                        <h6 class="dropdown-header">Logout:</h6>
-                        <a class="dropdown-item" href="login.html">Logout</a>
                     </div>
                 </li>
 
@@ -133,9 +131,15 @@
                                             <td><%= i %></td>
                                             <td><%= site.getId() %></td>
                                             <td><%= site.getSite() %></td>
-                                            <td><%= site.getStatus() %></td>
+                                            <td><%
+                                                if(site.getStatus() == 1){
+                                                    out.println("Aktif");
+                                                } else {
+                                                    out.println("Tidak Aktif");
+                                                }
+                                            %></td>
                                             <td>
-                                                <a href="?" class="btn btn-outline-secondary btn-sm">Non Aktif</a>
+                                                <a href="../servletNonAktifSite?id=<%= site.getId()%>" class="btn btn-outline-secondary btn-sm">Non Aktif</a>
                                             </td>
                                     
                                     </td>
@@ -187,7 +191,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="login.jsp">Logout</a>
                     </div>
                 </div>
             </div>

@@ -39,7 +39,6 @@
                         <div class="form-group">
                             <div class="form-label-group">
                                 <input type="text" id="name" class="form-control" placeholder="NIK" required="required">
-                                <label for="nik">NIK</label>
                             </div>
                         </div>
                         <div class="form-group">

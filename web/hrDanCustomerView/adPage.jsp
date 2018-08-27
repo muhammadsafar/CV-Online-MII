@@ -37,25 +37,25 @@
         <%
            AppDevController ap  = new AppDevController(HibernateUtil.getSessionFactory());
         %>
-        <nav class="navbar navbar-expand navbar-dark static-top" style="background: #bd5d38">
+        <nav class="navbar navbar-expand navbar-dark static-top bg-dark" style="background: #bd5d38">
 
             <a class="navbar-brand mr-1" href="mainHR.jsp">CV ONLINE</a>
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
             </button>
-      <!-- Logo -->
-      <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <!-- Logo -->
+            <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <span class="d-none d-lg-block">
                     <img alt="brand" src="image/mii.png" width="100" height="70">
                     <img alt="brand" src="image/metrodata.png" width="60" height="70">
                 </span>
-      </ul>
+            </ul>
         </nav>
 
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="sidebar navbar-nav" style="background: #bd5d38">
+            <ul class="sidebar navbar-nav bg-dark">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-folder"></i>
@@ -65,11 +65,8 @@
                         <h6 class="dropdown-header">Add data:</h6>
                         <a class="dropdown-item" href="registerSite.jsp">Site</a>
                         <a class="dropdown-item" href="registerCustomer.jsp">Customer</a>
-                        <a class="dropdown-item" href="registerHR.jsp">HR</a>
                         <a class="dropdown-item" href="registerAD.jsp">Application Developer</a>
                         <div class="dropdown-divider"></div>
-                        <h6 class="dropdown-header">Logout:</h6>
-                        <a class="dropdown-item" href="login.html">Logout</a>
                     </div>
                 </li>
 
@@ -107,6 +104,25 @@
                         <div class="card-header">
                             <i class="fas fa-table"></i>
                             Data Application Developer</div>
+                        <br>
+                        <form action="printDataApp.jsp">
+                            <button class="btn btn-primary btn-block" type="submit">Print</button>
+                        </form>
+                        <br>
+                        <div>
+                            <form method="GET" action="../servletSearch">
+                            <select class="btn btn-outline-secondary dropdown-toggle" name="cbKategori">
+                                <option value="award">Award</option>
+                                <option>Education</option>
+                                <option>Experience</option>
+                                <option>Organization</option>
+                                <option>Training</option>
+                                <option>Technical Qualification</option>
+                            </select>
+                            <input type="text" name="txtData" value="" />
+                            <button class="btn btn-outline-secondary btn-sm">Search</button>
+                            </form>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -139,7 +155,7 @@
                                             <td><%= ad.getNama()%></td>
                                             <td><%= ad.getStatus()%></td>
                                             <td>
-                                                <a href="../cvView/detailAD.jsp" class="btn btn-outline-secondary btn-sm">Detail</a>
+                                                <a href="../servletADDetail?id=<%= ad.getNik()%>" class="btn btn-outline-secondary btn-sm">Detail</a>
                                             </td>
                                         </tr>
                                         <%
@@ -189,15 +205,12 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="login.jsp">Logout</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>

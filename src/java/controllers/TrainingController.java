@@ -25,8 +25,8 @@ public class TrainingController {
     public TrainingController() {
     }
     
-    public boolean saveOrEdit(String id, String trainingId){
-        Training training = new Training(Long.parseLong(id), trainingId);
+    public boolean saveOrEdit(String id, String trainingName){
+        Training training = new Training(Integer.parseInt(id), trainingName);
         return this.tdao.insertOrUpdate(training);
     }
     
@@ -50,5 +50,8 @@ public class TrainingController {
     public Training getById(String trainingId){
         return this.tdao.getTrainingById(trainingId);
     }
-    
+
+    public Object autoId() {
+        return this.tdao.getAutoID();
+    }
 }

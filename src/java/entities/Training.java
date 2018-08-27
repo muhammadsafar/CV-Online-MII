@@ -3,21 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
+import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.SessionFactory;
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "TRAINING")
@@ -32,28 +36,32 @@ public class Training implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
     @Column(name = "TRAINING_NAME")
     private String trainingName;
+    @OneToMany(mappedBy = "trainingId")
+    private List<TrainingAd> trainingAdList;
 
     public Training() {
     }
 
-    public Training(Long id, String trainingName) {
+    public Training(SessionFactory factory) {
+    }
+    
+    public Training(Integer id) {
+        this.id = id;
+    }
+
+    public Training(Integer id, String trainingName) {
         this.id = id;
         this.trainingName = trainingName;
     }
 
-    
-    public Training(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -63,6 +71,15 @@ public class Training implements Serializable {
 
     public void setTrainingName(String trainingName) {
         this.trainingName = trainingName;
+    }
+
+    @XmlTransient
+    public List<TrainingAd> getTrainingAdList() {
+        return trainingAdList;
+    }
+
+    public void setTrainingAdList(List<TrainingAd> trainingAdList) {
+        this.trainingAdList = trainingAdList;
     }
 
     @Override
@@ -89,5 +106,5 @@ public class Training implements Serializable {
     public String toString() {
         return "entities.Training[ id=" + id + " ]";
     }
-    
+
 }

@@ -22,9 +22,9 @@ public class FlController {
     public FlController(SessionFactory factory) {
         this.fldao = new ForeignLanguageDAO(factory);
     }
-    
+
     public boolean saveOrEdit(String id, String fl){
-        ForeignLanguage language  = new ForeignLanguage(Integer.parseInt(id), fl);
+        ForeignLanguage language  = new ForeignLanguage(Integer.parseInt(id));
         return this.fldao.insertOrUpdate(language);
     }
     

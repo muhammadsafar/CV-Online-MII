@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
@@ -11,7 +12,6 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,8 +21,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "SITE")
@@ -44,8 +44,10 @@ public class Site implements Serializable {
     private String site;
     @Basic(optional = false)
     @Column(name = "STATUS")
-    private short status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "siteId", fetch = FetchType.LAZY)
+    private Integer status;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "siteId")
+    private List<AdSite> adSiteList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "siteId")
     private List<Customer> customerList;
 
     public Site() {
@@ -55,7 +57,7 @@ public class Site implements Serializable {
         this.id = id;
     }
 
-    public Site(String id, String site, short status) {
+    public Site(String id, String site, Integer status) {
         this.id = id;
         this.site = site;
         this.status = status;
@@ -77,12 +79,21 @@ public class Site implements Serializable {
         this.site = site;
     }
 
-    public short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(short status) {
+    public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @XmlTransient
+    public List<AdSite> getAdSiteList() {
+        return adSiteList;
+    }
+
+    public void setAdSiteList(List<AdSite> adSiteList) {
+        this.adSiteList = adSiteList;
     }
 
     @XmlTransient
@@ -118,5 +129,5 @@ public class Site implements Serializable {
     public String toString() {
         return "entities.Site[ id=" + id + " ]";
     }
-    
+
 }

@@ -7,6 +7,7 @@
 <%@page import="tools.HibernateUtil"%>
 <%@page import="controllers.CustomerController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,25 +38,25 @@
         <%
            CustomerController cc  = new CustomerController(HibernateUtil.getSessionFactory());
         %>
-        <nav class="navbar navbar-expand navbar-dark static-top" style="background: #bd5d38">
+        <nav class="navbar navbar-expand navbar-dark static-top bg-dark">
 
             <a class="navbar-brand mr-1" href="mainHR.jsp">CV ONLINE</a>
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
             </button>
-      <!-- Logo -->
-      <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <!-- Logo -->
+            <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <span class="d-none d-lg-block">
                     <img alt="brand" src="image/mii.png" width="100" height="70">
                     <img alt="brand" src="image/metrodata.png" width="60" height="70">
                 </span>
-      </ul>
+            </ul>
         </nav>
 
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="sidebar navbar-nav" style="background: #bd5d38">
+            <ul class="sidebar navbar-nav bg-dark">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-folder"></i>
@@ -65,11 +66,8 @@
                         <h6 class="dropdown-header">Add data:</h6>
                         <a class="dropdown-item" href="registerSite.jsp">Site</a>
                         <a class="dropdown-item" href="registerCustomer.jsp">Customer</a>
-                        <a class="dropdown-item" href="registerHR.jsp">HR</a>
                         <a class="dropdown-item" href="registerAD.jsp">Application Developer</a>
                         <div class="dropdown-divider"></div>
-                        <h6 class="dropdown-header">Logout:</h6>
-                        <a class="dropdown-item" href="login.html">Logout</a>
                     </div>
                 </li>
 
@@ -106,6 +104,9 @@
                         <div class="card-header">
                             <i class="fas fa-table"></i>
                             Data Customer</div>
+                        <form action="printDataCustomers.jsp">
+                            <button class="btn btn-primary btn-block" type="submit">Print</button>
+                        </form>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -115,6 +116,7 @@
                                             <th>Customer ID</th>
                                             <th>Name</th>
                                             <th>Site</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -123,6 +125,7 @@
                                             <th>Customer ID</th>
                                             <th>Name</th>
                                             <th>Site</th>
+                                            <th>Status</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -135,13 +138,19 @@
                                             <td><%= customer.getId()%></td>
                                             <td><%= customer.getNama()%></td>
                                             <td><%= customer.getSiteId().getSite() %></td>
-                                    
-                                    </td>
-                                    </tr>
-                                    <%
-    i++;
-}
-                                    %>
+                                            <td><%
+                                                if(customer.getStatus() == 1){
+                                                    out.println("Aktif");
+                                                } else {
+                                                    out.println("Tidak Aktif");
+                                                }
+                                                %></td>
+                                            </td>
+                                        </tr>
+                                        <%
+        i++;
+    }
+                                        %>
                                     </tbody>
                                 </table>
                             </div>
@@ -185,7 +194,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="login.jsp">Logout</a>
                     </div>
                 </div>
             </div>

@@ -47,23 +47,31 @@ Contributor(s):
     <property name="hibernate.connection.username">system</property>
     <property name="hibernate.connection.password">dayinta11</property>
     <property name="hibernate.default_schema">cvonline</property>
-    <property name="hibernate.show_sql">true</property>
+    <!--<property name="hibernate.show_sql">true</property>-->
     <property name="hibernate.connection.autocommit">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.enable_lazy_load_no_trans">true</property>
+    <mapping class="entities.AdSite"/>
     <mapping class="entities.AppDev"/>
     <mapping class="entities.Award"/>
+    <mapping class="entities.AwardAd"/>
     <mapping class="entities.Customer"/>
     <mapping class="entities.Education"/>
+    <mapping class="entities.EducationAd"/>
     <mapping class="entities.Experience"/>
+    <mapping class="entities.ExperienceAd"/>
     <mapping class="entities.ForeignLanguage"/>
     <mapping class="entities.Hr"/>
+    <mapping class="entities.LanguageAd"/>
     <mapping class="entities.Organization"/>
+    <mapping class="entities.OrganizationAd"/>
     <mapping class="entities.Religion"/>
     <mapping class="entities.Role"/>
     <mapping class="entities.Site"/>
+    <mapping class="entities.TechnicalAd"/>
     <mapping class="entities.TechnicalQualification"/>
     <mapping class="entities.Training"/>
+    <mapping class="entities.TrainingAd"/>
   </session-factory>
 </hibernate-configuration>

@@ -4,6 +4,22 @@
         <servlet-name>login</servlet-name>
         <servlet-class>servlet.login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TQAuto</servlet-name>
+        <servlet-class>servlets.TQAuto</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletADDetail</servlet-name>
+        <servlet-class>servlets.ServletADDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TQAuto</servlet-name>
+        <url-pattern>/tqAuto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletADDetail</servlet-name>
+        <url-pattern>/servletADDetail</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

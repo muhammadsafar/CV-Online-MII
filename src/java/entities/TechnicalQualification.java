@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
@@ -10,20 +11,19 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "TECHNICAL_QUALIFICATION")
@@ -38,33 +38,33 @@ public class TechnicalQualification implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
     @Column(name = "TEC_QUALIFICATION")
     private String tecQualification;
-    @JoinTable(name = "TECHNICAL_AD", joinColumns = {
-        @JoinColumn(name = "TEC_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "AD_ID", referencedColumnName = "NIK")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<AppDev> appDevList;
+    @OneToMany(mappedBy = "tecId")
+    private List<TechnicalAd> technicalAdList;
 
     public TechnicalQualification() {
     }
 
-    public TechnicalQualification(Long id, String tecQualification) {
+    public TechnicalQualification(Integer id) {
+        this.id = id;
+    }
+    
+    public TechnicalQualification(SessionFactory factory) {
+    }
+
+    public TechnicalQualification(Integer id, String tecQualification) {
         this.id = id;
         this.tecQualification = tecQualification;
     }
-
     
-    public TechnicalQualification(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -77,12 +77,12 @@ public class TechnicalQualification implements Serializable {
     }
 
     @XmlTransient
-    public List<AppDev> getAppDevList() {
-        return appDevList;
+    public List<TechnicalAd> getTechnicalAdList() {
+        return technicalAdList;
     }
 
-    public void setAppDevList(List<AppDev> appDevList) {
-        this.appDevList = appDevList;
+    public void setTechnicalAdList(List<TechnicalAd> technicalAdList) {
+        this.technicalAdList = technicalAdList;
     }
 
     @Override
@@ -109,5 +109,5 @@ public class TechnicalQualification implements Serializable {
     public String toString() {
         return "entities.TechnicalQualification[ id=" + id + " ]";
     }
-    
+
 }

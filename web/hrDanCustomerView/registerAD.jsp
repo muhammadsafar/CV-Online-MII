@@ -3,7 +3,10 @@
     Created on : Aug 16, 2018, 4:45:24 AM
     Author     : Dayinta Warih Wulandari
 --%>
-
+<%@page import="entities.Religion"%>
+<%@page import="controllers.ReligionController"%>
+<%@page import="controllers.AppDevController"%>
+<%@page import="tools.HibernateUtil"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,62 +33,44 @@
     </head>
 
     <body class="bg-dark">
-
+        <% AppDevController ac = new AppDevController(HibernateUtil.getSessionFactory()); %>
         <div class="container">
             <div class="card card-register mx-auto mt-5">
-                <div class="card-header">Register a HR</div>
+                <div class="card-header">Register an Application Developer</div>
                 <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" id="name" class="form-control" placeholder="NIK" required="required">
-                                <label for="nik">NIK</label>
+                    <form method="post" action="../registrasiAppDev">
+                        <div class="form-label-group">
+                            <div>
+                                <input type="hidden" name="nik" id="nik" class="form-control" value="<%= ac.autoId()%>" >
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" id="name" class="form-control" placeholder="Name" required="required">
+                            <div>
                                 <label for="name">Name</label>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="required">
+                            </div>
+                            <div>
+                                <div>
+                                    <label for="inputPassword">Password</label>
+                                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control" placeholder="Username" required="required">
-                                <label for="username">Username</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                                        <label for="inputPassword">Password</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
-                                        <label for="confirmPassword">Confirm password</label>
-                                    </div>
-                                </div>
+                        <p></p>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <select class="btn btn-outline-secondary dropdown-toggle" name="cbreligion">
+                                    <%
+                                        ReligionController rc = new ReligionController(HibernateUtil.getSessionFactory());
+                                        for (Religion rel : rc.binding()) {
+                                    %>
+                                    <option value="<%= rel.getId()%>"><%= rel.getReligion()%></option>
+                                    <%
+                                    }
+                                    %>
+                                </select>
                             </div>
                         </div>
 
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Religion</button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Islam</a>
-                                    <a class="dropdown-item" href="#">Katolik</a>
-                                    <a class="dropdown-item" href="#">Kristen</a>
-                                    <a class="dropdown-item" href="#">Budha</a>
-                                    <a class="dropdown-item" href="#">Hindu</a>
-                                    <a class="dropdown-item" href="#">Konghucu</a>
-                                </div>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                        </div>
-                        <a class="btn btn-primary btn-block" href="mainHR.jsp">Register</a>
+                        <button class="btn btn-primary btn-block" type="submit">Add Application Developer</button>
                     </form>
                 </div>
             </div>

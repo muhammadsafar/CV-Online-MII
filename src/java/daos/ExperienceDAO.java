@@ -22,23 +22,22 @@ public class ExperienceDAO {
     }
     
     public boolean insertOrUpdate(Experience experience){
-    
         return this.fdao.insertOrUpdate(experience);
     }
     
     public List<Object> getAll(){
-    
         return this.fdao.get("from Experience");
     }
     
     public Experience getExperienceById(String experienceId){
-    
         return (Experience) this.fdao.getById("from Experience where id = "+experienceId+"");
     }
     
     public List<Object> search(String category, String data){
-    
-        return this.fdao.get("from Experience where "+category+"like '%"+data+"%'");
+        return this.fdao.get("from Experience where "+category+" like '%"+data+"%'");
     }
     
+    public String getAutoID(){
+        return (String) this.fdao.getAutoId("select to_char(to_number(max(id))+1) from Experience");
+    }
 }

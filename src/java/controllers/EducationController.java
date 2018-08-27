@@ -23,7 +23,7 @@ public class EducationController {
     }
     
     public boolean saveOrEdit(String id, String edu){
-        Education education = new Education(Long.parseLong(id), edu);
+        Education education = new Education(Integer.parseInt(id), edu);
         return this.edao.insertOrUpdate(education);
     }
     
@@ -46,5 +46,9 @@ public class EducationController {
     
     public Education getById(String eduId){
         return this.edao.getEducationById(eduId);
+    }
+    
+    public Object autoId() {
+        return this.edao.getAutoID();
     }
 }

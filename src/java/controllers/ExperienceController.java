@@ -23,7 +23,7 @@ public class ExperienceController {
     }
 
     public boolean saveOrEdit(String id, String expe){
-        Experience exp = new Experience(Long.parseLong(id), expe);
+        Experience exp = new Experience(Integer.parseInt(id), expe);
         return this.experienceDAO.insertOrUpdate(exp);
     }
     
@@ -46,5 +46,9 @@ public class ExperienceController {
     
     public Experience getById(String exId){
         return this.experienceDAO.getExperienceById(exId);
+    }
+    
+    public Object autoId() {
+        return this.experienceDAO.getAutoID();
     }
 }

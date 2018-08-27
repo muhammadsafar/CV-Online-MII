@@ -16,8 +16,8 @@ import org.hibernate.SessionFactory;
  * @author MUHAMMAD BIN ZANDRA
  */
 public class TechQualificationController {
-    
-    public TechQualificationDAO  tqdao;
+
+    public TechQualificationDAO tqdao;
 
     public TechQualificationController(SessionFactory factory) {
         this.tqdao = new TechQualificationDAO(factory);
@@ -25,30 +25,34 @@ public class TechQualificationController {
 
     public TechQualificationController() {
     }
-    
-    public boolean saveOrEdit(String id, String tq){
-        TechnicalQualification tq1 = new TechnicalQualification(Long.parseLong(id), tq);
+
+    public boolean saveOrEdit(String id, String tq) {
+        TechnicalQualification tq1 = new TechnicalQualification(Integer.parseInt(id), tq);
         return this.tqdao.insertOrUpdate(tq1);
     }
-    
-    public List<TechnicalQualification> convertTqList(List<Object> dataAwal){
+
+    public List<TechnicalQualification> convertTqList(List<Object> dataAwal) {
         List<TechnicalQualification> dataTech = new ArrayList<>();
         for (Object object : dataAwal) {
             TechnicalQualification tq = (TechnicalQualification) object;
             dataTech.add(tq);
         }
-       return dataTech;
+        return dataTech;
     }
-    
-    public List<TechnicalQualification> binding(){
+
+    public List<TechnicalQualification> binding() {
         return this.convertTqList(this.tqdao.getAll());
     }
-    
-    public List<TechnicalQualification> find(String category, String data){
+
+    public List<TechnicalQualification> find(String category, String data) {
         return this.convertTqList(this.tqdao.search(category, data));
     }
-    
-    public TechnicalQualification getById(String techId){
+
+    public TechnicalQualification getById(String techId) {
         return this.tqdao.getTqById(techId);
+    }
+
+    public Object autoId() {
+        return this.tqdao.getAutoID();
     }
 }

@@ -36,6 +36,11 @@ public class HrDAO {
         return (Hr) this.fdao.getById("from Hr where nik = "+hrId+"");
     }
     
+        public Hr getHrByUser(String user){
+    
+        return (Hr) this.fdao.getById("from Hr where username = "+user+"");
+    }
+    
     public List<Object> search(String category, String data){
     
         return this.fdao.get("from Hr where "+category+ " like '%"+data+"%' ");

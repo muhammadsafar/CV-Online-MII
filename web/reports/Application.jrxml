@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6b2989f8-0891-4af8-8549-e7ae95bb6475">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     APP_DEV."NIK" AS APP_DEV_NIK,
+     APP_DEV."NAMA" AS APP_DEV_NAMA,
+     APP_DEV."ALAMAT" AS APP_DEV_ALAMAT,
+     APP_DEV."EMAIL" AS APP_DEV_EMAIL,
+     APP_DEV."NOHP" AS APP_DEV_NOHP,
+     AD_SITE."REVIEW" AS AD_SITE_REVIEW,
+     SITE."SITE" AS SITE_SITE
+FROM
+     "CVONLINE"."APP_DEV" APP_DEV INNER JOIN "CVONLINE"."AD_SITE" AD_SITE ON APP_DEV."NIK" = AD_SITE."AD_ID"
+     INNER JOIN "CVONLINE"."SITE" SITE ON AD_SITE."SITE_ID" = SITE."ID"
+ORDER BY
+     APP_DEV."NAMA" ASC]]>
+	</queryString>
+	<field name="APP_DEV_NIK" class="java.lang.String"/>
+	<field name="APP_DEV_NAMA" class="java.lang.String"/>
+	<field name="APP_DEV_ALAMAT" class="java.lang.String"/>
+	<field name="APP_DEV_EMAIL" class="java.lang.String"/>
+	<field name="APP_DEV_NOHP" class="java.lang.String"/>
+	<field name="AD_SITE_REVIEW" class="java.lang.String"/>
+	<field name="SITE_SITE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="107" y="25" width="343" height="20" uuid="def849c8-a972-4602-ad6b-a6c473a06747"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Application Developer ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="65" width="555" height="1" uuid="0ed2eb44-ea13-4980-89c2-bd91349097b5"/>
+			</line>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="455" y="25" width="100" height="20" uuid="9ae3c94c-a05b-4b37-a896-743ace382c1f"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="84" height="65" uuid="7d71d370-1487-4391-b90b-c9d041fc72f4"/>
+				<imageExpression><![CDATA["C:\\Users\\MUHAMMAD BIN ZANDRA\\Desktop\\PT_Mitra_Integrasi_Informatika_MII.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="122" y="56" width="348" height="9" uuid="021c6d63-1da4-4f1e-883b-ea59cbbcd1ab"/>
+				<textElement>
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[APL Tower Lantai 37 Jl. Letjen S. Parman Kav. 28 Jakarta 11470 , Telp: +62 21 29345 777 / Fax: +62 21 29345 700 , Email: contact@mii.co.id]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="84" height="20" uuid="d78f41ca-eb75-4537-b426-77bb4e843027"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[NIK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="84" y="0" width="80" height="20" uuid="15c9490e-5654-45f1-9d52-8eae3d531a9f"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="164" y="0" width="85" height="20" uuid="da51f4a7-81f8-40fc-a819-aef2eeef3093"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Address]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="0" width="86" height="20" uuid="edd77a7a-1321-461c-8bd0-3e76f28df617"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Number Phone]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="0" width="73" height="20" uuid="eacc56b5-812d-47fa-84cd-4a86416e82e9"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="0" width="82" height="20" uuid="da95531d-07b2-4376-a7df-157420ada7b0"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Review]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="0" width="65" height="20" uuid="0a24bc61-e3ab-4c34-8543-e38979be9ae5"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[On Site]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement x="4" y="0" width="551" height="1" uuid="dff77d72-d178-4f7c-a814-a55c18494182"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="84" y="5" width="80" height="20" uuid="2e50e6ba-5cc5-462b-83e1-5c72005a863c"/>
+				<textElement textAlignment="Center">
+					<font fontName="AngsanaUPC" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APP_DEV_NAMA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="164" y="5" width="85" height="20" uuid="20a4dec3-eceb-45ec-b81b-2818b8fa1ad4"/>
+				<textElement textAlignment="Center">
+					<font fontName="AngsanaUPC" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APP_DEV_ALAMAT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="5" width="86" height="20" uuid="d0597d2c-9736-4e70-99e6-f3a9f0986cad"/>
+				<textElement textAlignment="Center">
+					<font fontName="AngsanaUPC" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APP_DEV_NOHP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="5" width="80" height="20" uuid="cacbd903-5243-434d-ba56-3872b48a1cf2"/>
+				<textElement textAlignment="Center">
+					<font fontName="AngsanaUPC" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APP_DEV_NIK}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="5" width="73" height="20" uuid="b6bb56f6-10a1-45ec-a633-ff85b78483ed"/>
+				<textElement textAlignment="Center">
+					<font fontName="AngsanaUPC" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APP_DEV_EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="5" width="82" height="20" uuid="8cd72c63-18b1-442a-a1e7-e45a02afd9c4"/>
+				<textElement textAlignment="Center">
+					<font fontName="AngsanaUPC" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{APP_DEV_EMAIL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="5" width="65" height="20" uuid="264ec5b7-7869-4ede-b888-651eb5316078"/>
+				<textElement textAlignment="Center">
+					<font fontName="AngsanaUPC" size="5"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SITE_SITE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="450" y="34" width="100" height="20" uuid="54ab9c33-d699-47a9-90d3-131c98176215"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

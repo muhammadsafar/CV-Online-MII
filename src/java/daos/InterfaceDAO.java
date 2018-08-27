@@ -14,9 +14,10 @@ import java.util.List;
 public interface InterfaceDAO {
     
     public boolean insertOrUpdate(Object object);
+    public boolean edit(Object object);
     public boolean delete(String id);
     public List<Object> get(String query);
     public Object getById(String query);
-    public String getAutoId();
+    public Object getAutoId(String query);
     
 }

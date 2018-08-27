@@ -8,19 +8,22 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * 
@@ -32,7 +35,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "AppDev.findAll", query = "SELECT a FROM AppDev a")
     , @NamedQuery(name = "AppDev.findByNik", query = "SELECT a FROM AppDev a WHERE a.nik = :nik")
-    , @NamedQuery(name = "AppDev.findByUsername", query = "SELECT a FROM AppDev a WHERE a.username = :username")
     , @NamedQuery(name = "AppDev.findByPassword", query = "SELECT a FROM AppDev a WHERE a.password = :password")
     , @NamedQuery(name = "AppDev.findByNama", query = "SELECT a FROM AppDev a WHERE a.nama = :nama")
     , @NamedQuery(name = "AppDev.findByAlamat", query = "SELECT a FROM AppDev a WHERE a.alamat = :alamat")
@@ -43,7 +45,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "AppDev.findByStatus", query = "SELECT a FROM AppDev a WHERE a.status = :status")
     , @NamedQuery(name = "AppDev.findByNohp", query = "SELECT a FROM AppDev a WHERE a.nohp = :nohp")
     , @NamedQuery(name = "AppDev.findByEmail", query = "SELECT a FROM AppDev a WHERE a.email = :email")
-    , @NamedQuery(name = "AppDev.findByPicture", query = "SELECT a FROM AppDev a WHERE a.picture = :picture")})
+    , @NamedQuery(name = "AppDev.findByPicture", query = "SELECT a FROM AppDev a WHERE a.picture = :picture")
+    , @NamedQuery(name = "AppDev.findByUsername", query = "SELECT a FROM AppDev a WHERE a.username = :username")})
 public class AppDev implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -51,9 +54,6 @@ public class AppDev implements Serializable {
     @Basic(optional = false)
     @Column(name = "NIK")
     private String nik;
-    @Basic(optional = false)
-    @Column(name = "USERNAME")
-    private String username;
     @Basic(optional = false)
     @Column(name = "PASSWORD")
     private String password;
@@ -79,17 +79,37 @@ public class AppDev implements Serializable {
     private String email;
     @Column(name = "PICTURE")
     private String picture;
+    @Column(name = "USERNAME")
+    private String username;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "adId")
+    private List<AdSite> adSiteList;
+    @OneToMany(mappedBy = "adId")
+    private List<TrainingAd> trainingAdList;
+    @OneToMany(mappedBy = "adId")
+    private List<ExperienceAd> experienceAdList;
+    @OneToMany(mappedBy = "adId")
+    private List<OrganizationAd> organizationAdList;
+    @OneToMany(mappedBy = "adId")
+    private List<EducationAd> educationAdList;
+    @OneToMany(mappedBy = "adId")
+    private List<TechnicalAd> technicalAdList;
+    @OneToMany(mappedBy = "adId")
+    private List<LanguageAd> languageAdList;
     @JoinColumn(name = "RELIGION_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Religion religionId;
     @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Role roleId;
+    @OneToMany(mappedBy = "adId")
+    private List<AwardAd> awardAdList;
 
     public AppDev() {
     }
 
-    public AppDev(String nik, String username, String password, String nama, String alamat, Date birthday, String nationality, String maritalStatus, String gender, String status, String nohp, String email, String picture, Role roleId, Religion religionId) {
+        public AppDev(String nik, String username, String password, String nama, String alamat, Date birthday, 
+            String nationality, String maritalStatus, String gender, String status, String email, String nohp, 
+            String picture, Role roleId, Religion religionId) {
         this.nik = nik;
         this.username = username;
         this.password = password;
@@ -100,20 +120,26 @@ public class AppDev implements Serializable {
         this.maritalStatus = maritalStatus;
         this.gender = gender;
         this.status = status;
-        this.nohp = nohp;
         this.email = email;
+        this.nohp = nohp;
         this.picture = picture;
         this.roleId = roleId;
-        this.religionId = religionId;
-    }    
-
-    public AppDev(String nik) {
-        this.nik = nik;
+        this.religionId = religionId;  
     }
-
+    
     public AppDev(String nik, String username, String password, String nama) {
         this.nik = nik;
-        this.username = username;
+        this.password = password;
+        this.nama = nama;
+    }
+    
+     public AppDev(String nik, String status) {
+        this.nik = nik;
+        this.status = status;
+    }
+
+    public AppDev(String nik, String password, String nama) {
+        this.nik = nik;
         this.password = password;
         this.nama = nama;
     }
@@ -124,14 +150,6 @@ public class AppDev implements Serializable {
 
     public void setNik(String nik) {
         this.nik = nik;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {
@@ -222,6 +240,77 @@ public class AppDev implements Serializable {
         this.picture = picture;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @XmlTransient
+    public List<AdSite> getAdSiteList() {
+        return adSiteList;
+    }
+
+    public void setAdSiteList(List<AdSite> adSiteList) {
+        this.adSiteList = adSiteList;
+    }
+
+    @XmlTransient
+    public List<TrainingAd> getTrainingAdList() {
+        return trainingAdList;
+    }
+
+    public void setTrainingAdList(List<TrainingAd> trainingAdList) {
+        this.trainingAdList = trainingAdList;
+    }
+
+    @XmlTransient
+    public List<ExperienceAd> getExperienceAdList() {
+        return experienceAdList;
+    }
+
+    public void setExperienceAdList(List<ExperienceAd> experienceAdList) {
+        this.experienceAdList = experienceAdList;
+    }
+
+    @XmlTransient
+    public List<OrganizationAd> getOrganizationAdList() {
+        return organizationAdList;
+    }
+
+    public void setOrganizationAdList(List<OrganizationAd> organizationAdList) {
+        this.organizationAdList = organizationAdList;
+    }
+
+    @XmlTransient
+    public List<EducationAd> getEducationAdList() {
+        return educationAdList;
+    }
+
+    public void setEducationAdList(List<EducationAd> educationAdList) {
+        this.educationAdList = educationAdList;
+    }
+
+    @XmlTransient
+    public List<TechnicalAd> getTechnicalAdList() {
+        return technicalAdList;
+    }
+
+    public void setTechnicalAdList(List<TechnicalAd> technicalAdList) {
+        this.technicalAdList = technicalAdList;
+    }
+
+    @XmlTransient
+    public List<LanguageAd> getLanguageAdList() {
+        return languageAdList;
+    }
+
+    public void setLanguageAdList(List<LanguageAd> languageAdList) {
+        this.languageAdList = languageAdList;
+    }
+
     public Religion getReligionId() {
         return religionId;
     }
@@ -236,6 +325,15 @@ public class AppDev implements Serializable {
 
     public void setRoleId(Role roleId) {
         this.roleId = roleId;
+    }
+
+    @XmlTransient
+    public List<AwardAd> getAwardAdList() {
+        return awardAdList;
+    }
+
+    public void setAwardAdList(List<AwardAd> awardAdList) {
+        this.awardAdList = awardAdList;
     }
 
     @Override

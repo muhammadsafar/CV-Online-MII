@@ -29,27 +29,33 @@ public class AppDevController {
         this.appDevDAO = new AppDevDAO(factory);
     }
     
+    public boolean saveOrEdit(AppDev appDev){
+        return this.appDevDAO.insertOrUpdate(appDev);
+    }
     public boolean saveOrEdit(String nik, String username, String pass, String name, 
             String address, Date dob, String national, String marital, String gender, String status, 
-            String nope, String email, String pict, String roleId, String religionId){
-        
+            String email, String nope, String pict, String roleId, String religionId){
         AppDev appDev = new AppDev(nik, 
                 username, 
                 pass, 
                 name, 
-                name, 
+                address, 
                 dob, 
                 national, 
                 marital, 
                 gender, 
                 status, 
-                nope, 
                 email, 
+                nope, 
                 pict, 
                 new Role(Long.parseLong(roleId), ""), 
                 new Religion(Short.parseShort(religionId), ""));
-        
         return this.appDevDAO.insertOrUpdate(appDev);
+    }
+    
+    public boolean editStatus(String nik, String value){
+        AppDev appDev = new AppDev(nik, value);
+        return this.appDevDAO.editStatus(appDev);
     }
     
     /**
@@ -91,6 +97,17 @@ public class AppDevController {
         return this.appDevDAO.getAppDevByAId(appId);
     }
     
+        public AppDev getByUser(String user){
+        return this.appDevDAO.getAppDevByUser(user);
+    }
     
+    public Object autoId(){
+        return this.appDevDAO.getAutoID();
+    }
+    
+    public AppDev getByCateAppDev(String cate, String value) {
+        AppDev ad = (AppDev) appDevDAO.search(cate, value).get(0);
+        return this.appDevDAO.getAppDevByAId(ad.getNik());
+    }
     
 }

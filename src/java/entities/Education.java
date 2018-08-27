@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
@@ -10,20 +11,17 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
+import org.hibernate.SessionFactory;
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "EDUCATION")
@@ -38,34 +36,32 @@ public class Education implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
     @Column(name = "EDUCATION")
     private String education;
-    @JoinTable(name = "EDUCATION_AD", joinColumns = {
-        @JoinColumn(name = "EDUCATION_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "AD_ID", referencedColumnName = "NIK")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<AppDev> appDevList;
+    @OneToMany(mappedBy = "educationId")
+    private List<EducationAd> educationAdList;
 
     public Education() {
     }
+    
+    public Education(SessionFactory factory) {
+    }
 
-    public Education(Long id, String education) {
+    public Education(Integer id) {
+        this.id = id;
+    }
+
+    public Education(Integer id, String education) {
         this.id = id;
         this.education = education;
     }
-    
-    
 
-    public Education(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -78,12 +74,12 @@ public class Education implements Serializable {
     }
 
     @XmlTransient
-    public List<AppDev> getAppDevList() {
-        return appDevList;
+    public List<EducationAd> getEducationAdList() {
+        return educationAdList;
     }
 
-    public void setAppDevList(List<AppDev> appDevList) {
-        this.appDevList = appDevList;
+    public void setEducationAdList(List<EducationAd> educationAdList) {
+        this.educationAdList = educationAdList;
     }
 
     @Override
@@ -110,5 +106,5 @@ public class Education implements Serializable {
     public String toString() {
         return "entities.Education[ id=" + id + " ]";
     }
-    
+
 }

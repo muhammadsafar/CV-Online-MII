@@ -28,7 +28,7 @@ public class AwardController {
     
     
     public boolean saveOrEdit(String id, String award){
-        Award award1 = new Award(Long.parseLong(id), award);
+        Award award1 = new Award(Integer.parseInt(id), award);
         return this.adao.insertOrUpdate(award1);
     }
     
@@ -53,5 +53,8 @@ public class AwardController {
     
     public Award getById(String awardId){
         return this.adao.getAwardById(awardId);
+    }
+    public Object autoId() {
+        return this.adao.getAutoID();
     }
 }

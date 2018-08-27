@@ -1,3 +1,14 @@
+<%-- 
+    Document   : login
+    Created on : Aug 18, 2018, 3:21:54 PM
+    Author     : Dayinta Warih Wulandari
+--%>
+
+<%@page import="entities.AppDev"%>
+<%@page import="controllers.AppDevController"%>
+<%@page import="tools.HibernateUtil"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,12 +31,18 @@
         <link href="css/sb-admin.css" rel="stylesheet">
 
     </head>
+    
+    <%
+    AppDevController adc = new AppDevController(HibernateUtil.getSessionFactory());
+    %>    
     <body class="bg-dark">
         <div class="container">
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header">Login</div>
                 <div class="card-body">
+                    <%for (AppDev ad : adc.binding()) {%>
                     <form action="../cek" method="post"> 
+                        <%}%>
                         <div class="form-group">
                                 <label>Username</label>
                                 <input type="text" name="username" class="form-control" placeholder="Username" required="required">

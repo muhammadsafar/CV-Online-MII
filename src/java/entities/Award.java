@@ -6,18 +6,21 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-
+import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.SessionFactory;
 /**
  *
- * @author MUHAMMAD BIN ZANDRA
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "AWARD")
@@ -32,28 +35,32 @@ public class Award implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
     @Column(name = "AWARD_NAME")
     private String awardName;
+    @OneToMany(mappedBy = "awardId")
+    private List<AwardAd> awardAdList;
 
     public Award() {
     }
 
-    public Award(Long id, String awardName) {
-        this.id = id;
-        this.awardName = awardName;
+    public Award(SessionFactory factory) {
     }
     
-
-    public Award(Long id) {
+    public Award(Integer id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public Award(Integer id, String awardName) {
+        this.id = id;
+        this.awardName = awardName;
+    }
+
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -63,6 +70,15 @@ public class Award implements Serializable {
 
     public void setAwardName(String awardName) {
         this.awardName = awardName;
+    }
+
+    @XmlTransient
+    public List<AwardAd> getAwardAdList() {
+        return awardAdList;
+    }
+
+    public void setAwardAdList(List<AwardAd> awardAdList) {
+        this.awardAdList = awardAdList;
     }
 
     @Override
@@ -89,5 +105,5 @@ public class Award implements Serializable {
     public String toString() {
         return "entities.Award[ id=" + id + " ]";
     }
-    
+
 }

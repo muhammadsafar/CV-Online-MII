@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,8 +20,8 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "CUSTOMER")
@@ -30,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Customer.findById", query = "SELECT c FROM Customer c WHERE c.id = :id")
     , @NamedQuery(name = "Customer.findByNama", query = "SELECT c FROM Customer c WHERE c.nama = :nama")
     , @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Customer c WHERE c.username = :username")
-    , @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password")})
+    , @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password")
+    , @NamedQuery(name = "Customer.findByStatus", query = "SELECT c FROM Customer c WHERE c.status = :status")})
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,25 +49,17 @@ public class Customer implements Serializable {
     @Basic(optional = false)
     @Column(name = "PASSWORD")
     private String password;
+    @Column(name = "STATUS")
+    private Integer status;
     @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Role roleId;
     @JoinColumn(name = "SITE_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Site siteId;
 
     public Customer() {
     }
-
-    public Customer(String id, String nama, String username, String password, Role roleId, Site siteId) {
-        this.id = id;
-        this.nama = nama;
-        this.username = username;
-        this.password = password;
-        this.roleId = roleId;
-        this.siteId = siteId;
-    }
-    
 
     public Customer(String id) {
         this.id = id;
@@ -77,6 +71,17 @@ public class Customer implements Serializable {
         this.username = username;
         this.password = password;
     }
+
+    public Customer(String id, String nama, String username, String password, Integer status, Role roleId, Site siteId) {
+        this.id = id;
+        this.nama = nama;
+        this.username = username;
+        this.password = password;
+        this.status = status;
+        this.roleId = roleId;
+        this.siteId = siteId;
+    }
+    
 
     public String getId() {
         return id;
@@ -108,6 +113,14 @@ public class Customer implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Role getRoleId() {
@@ -150,5 +163,5 @@ public class Customer implements Serializable {
     public String toString() {
         return "entities.Customer[ id=" + id + " ]";
     }
-    
+
 }

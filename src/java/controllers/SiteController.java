@@ -26,8 +26,8 @@ public class SiteController {
         this.sdao = new SiteDAO(factory);
     }
     
-    boolean saveOrEdit(String id, String site, String status){
-        Site site1 = new Site(id, site, Short.parseShort(status));
+    public boolean saveOrEdit(String id, String site, String status){
+        Site site1 = new Site(id, site, Integer.parseInt(status));
         return this.sdao.insertOrUpdate(site1);
     }
     
@@ -52,8 +52,11 @@ public class SiteController {
     }
     
     public Site getById(String siteId){
-    
         return this.sdao.getSiteById(siteId);
+    }
+    
+    public Object autoId(){
+        return this.sdao.getAutoID();
     }
     
 }

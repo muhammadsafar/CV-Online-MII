@@ -3,8 +3,19 @@
     Created on : Aug 15, 2018, 4:51:16 AM
     Author     : Dayinta Warih Wulandari
 --%>
-
+<%@page import="entities.AppDev"%>
+<%@page import="tools.HibernateUtil"%>
+<%@page import="controllers.AppDevController"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+if(session.getAttribute("iniSessionCustomer") == null){
+    response.sendRedirect("login.jsp");
+
+}else {
+
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,25 +42,28 @@
 
     </head>
     <body id="page-top">
-        <nav class="navbar navbar-expand navbar-dark static-top" style="background: #bd5d38">
+        <%
+   AppDevController ap  = new AppDevController(HibernateUtil.getSessionFactory());
+        %>
+        <nav class="navbar navbar-expand navbar-dark static-top bg-dark">
 
             <a class="navbar-brand mr-1" href="mainCustomer.jsp">CV ONLINE</a>
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
                 <i class="fas fa-bars"></i>
             </button>
-      <!-- Logo -->
-      <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <!-- Logo -->
+            <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
                 <span class="d-none d-lg-block">
                     <img alt="brand" src="image/mii.png" width="100" height="70">
                     <img alt="brand" src="image/metrodata.png" width="60" height="70">
                 </span>
-      </ul>
+            </ul>
         </nav>
 
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="sidebar navbar-nav" style="background: #bd5d38">
+            <ul class="sidebar navbar-nav bg-dark">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-folder"></i>
@@ -57,7 +71,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                         <h6 class="dropdown-header">Logout:</h6>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="../logOutServlet">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -100,16 +114,24 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <%
+int i = 1;
+for (AppDev ad : ap.binding()) {
+                                        %>
                                         <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><%= i%></td>
+                                            <td><%= ad.getNik()%></td>
+                                            <td><%= ad.getNama()%></td>
                                             <td>
-                                                <a href="../cvView/reviewAD.jsp" class="btn btn-outline-secondary btn-sm">Detail</a>
+                                                <a href="../servletADReview?id=<%= ad.getNik()%>" class="btn btn-outline-secondary btn-sm">Detail</a>
                                             </td>
 
                                             </td>
                                         </tr>
+                                        <%
+i++;
+}
+                                        %>
                                     </tbody>
                                 </table>
                             </div>
@@ -153,7 +175,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="login.jsp">Logout</a>
                     </div>
                 </div>
             </div>
@@ -179,3 +201,7 @@
         <script src="js/demo/chart-area-demo.js"></script>
     </body>
 </html>
+
+<%
+}
+%>

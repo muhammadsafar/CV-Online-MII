@@ -12,12 +12,13 @@ import entities.Role;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.SessionFactory;
+
 /**
  *
  * @author MUHAMMAD BIN ZANDRA
  */
 public class CustomerController {
-    
+
     public CustomerDAO cdao;
 
     public CustomerController(SessionFactory factory) {
@@ -26,40 +27,37 @@ public class CustomerController {
 
     public CustomerController() {
     }
-    
-    public boolean saveOrEdit(String id, String nama, String username, String pass, String roleId, String siteId){
-    
-        Customer customer = new Customer(id, nama, username, pass, new Role(Long.parseLong(roleId), ""), 
-                new Site(siteId, "", Short.parseShort("0")));
+
+    public boolean saveOrEdit(String id, String nama, String username, String pass, int status, String roleId, String siteId) {
+        Customer customer = new Customer(id, nama, username, pass, status, new Role(Long.parseLong(roleId), ""),
+                new Site(siteId, "", Integer.parseInt("0")));
         return this.cdao.insertOrUpdate(customer);
     }
-    
-    public List<Customer> convertCustomerList(List<Object> dataAwal){
-    
+
+    public List<Customer> convertCustomerList(List<Object> dataAwal) {
         List<Customer> dataCus = new ArrayList<>();
         for (Object object : dataAwal) {
-     
+
             Customer customer = (Customer) object;
             dataCus.add(customer);
         }
         return dataCus;
     }
-    
-    public List<Customer> binding(){
-    
+
+    public List<Customer> binding() {
         return this.convertCustomerList(this.cdao.getAll());
     }
-    
-    public List<Customer> find(String category, String data){
-    
+
+    public List<Customer> find(String category, String data) {
         return this.convertCustomerList(this.cdao.search(category, data));
     }
-    
-    public Customer getById(String cusId){
-    
+
+    public Customer getById(String cusId) {
         return this.cdao.getCustomerById(cusId);
     }
-    
-    
-    
+
+    public Object autoId() {
+        return this.cdao.getAutoID();
+    }
+
 }

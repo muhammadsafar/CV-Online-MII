@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,8 +19,8 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "HR")
@@ -48,21 +48,11 @@ public class Hr implements Serializable {
     @Column(name = "PASSWORD")
     private String password;
     @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Role roleId;
 
     public Hr() {
     }
-
-    public Hr(String nik, String nama, String username, String password, Role roleId) {
-        this.nik = nik;
-        this.nama = nama;
-        this.username = username;
-        this.password = password;
-        this.roleId = roleId;
-    }
-    
-    
 
     public Hr(String nik) {
         this.nik = nik;
@@ -75,6 +65,9 @@ public class Hr implements Serializable {
         this.password = password;
     }
 
+    public Hr(String nik, String nama, String username, String password, Role role) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     public String getNik() {
         return nik;
     }
@@ -139,5 +132,5 @@ public class Hr implements Serializable {
     public String toString() {
         return "entities.Hr[ nik=" + nik + " ]";
     }
-    
+
 }

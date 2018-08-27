@@ -38,6 +38,10 @@ public class TrainingDAO {
     
     public List<Object> search(String category, String data){
     
-        return this.fdao.get("from Training where "+category+"like '%"+data+"%'");
+        return this.fdao.get("from Training where "+category+" like '%"+data+"%'");
+    }
+    
+    public String getAutoID(){
+        return (String) this.fdao.getAutoId("select to_char(to_number(max(id))+1) from Training");
     }
 }

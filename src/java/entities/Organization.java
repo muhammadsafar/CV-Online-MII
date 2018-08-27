@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package entities;
 
 import java.io.Serializable;
@@ -10,20 +11,17 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-
+import org.hibernate.SessionFactory;
 /**
- *
- * @author MUHAMMAD BIN ZANDRA
+ * 
+ * @author Dayinta Warih Wulandari
  */
 @Entity
 @Table(name = "ORGANIZATION")
@@ -38,34 +36,35 @@ public class Organization implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
     @Column(name = "ORGANIZATION_NAME")
     private String organizationName;
-    @JoinTable(name = "ORGANIZATION_AD", joinColumns = {
-        @JoinColumn(name = "ORGANIZATION_ID", referencedColumnName = "ID")}, inverseJoinColumns = {
-        @JoinColumn(name = "AD_ID", referencedColumnName = "NIK")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<AppDev> appDevList;
+    @OneToMany(mappedBy = "organizationId")
+    private List<OrganizationAd> organizationAdList;
 
     public Organization() {
     }
 
-    public Organization(Long id, String organizationName) {
-        this.id = id;
-        this.organizationName = organizationName;
+    public Organization(SessionFactory factory) {
     }
     
-
-    public Organization(Long id) {
+    public Organization(Integer id) {
         this.id = id;
     }
+    
+    
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Organization(Integer id, String organizationName) {
+        this.id = id;
+        this.organizationName = organizationName;
     }
 
     public String getOrganizationName() {
@@ -77,12 +76,12 @@ public class Organization implements Serializable {
     }
 
     @XmlTransient
-    public List<AppDev> getAppDevList() {
-        return appDevList;
+    public List<OrganizationAd> getOrganizationAdList() {
+        return organizationAdList;
     }
 
-    public void setAppDevList(List<AppDev> appDevList) {
-        this.appDevList = appDevList;
+    public void setOrganizationAdList(List<OrganizationAd> organizationAdList) {
+        this.organizationAdList = organizationAdList;
     }
 
     @Override
@@ -109,5 +108,5 @@ public class Organization implements Serializable {
     public String toString() {
         return "entities.Organization[ id=" + id + " ]";
     }
-    
+
 }

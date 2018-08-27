@@ -5,6 +5,13 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+if(session.getAttribute("iniSessionHr") == null){
+    response.sendRedirect("login.jsp");
+
+}else {
+
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +38,7 @@
 
     </head>
     <body id="page-top">
-        <nav class="navbar navbar-expand navbar-dark static-top" style="background: #bd5d38">
+        <nav class="navbar navbar-expand navbar-dark static-top  bg-dark">
 
             <a class="navbar-brand mr-1" href="mainHR.jsp">CV ONLINE</a>
             <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
@@ -49,7 +56,7 @@
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="sidebar navbar-nav" style="background: #bd5d38">
+            <ul class="sidebar navbar-nav bg-dark">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-fw fa-folder"></i>
@@ -59,11 +66,10 @@
                         <h6 class="dropdown-header">Add data:</h6>
                         <a class="dropdown-item" href="registerSite.jsp">Site</a>
                         <a class="dropdown-item" href="registerCustomer.jsp">Customer</a>
-                        <a class="dropdown-item" href="registerHR.jsp">HR</a>
                         <a class="dropdown-item" href="registerAD.jsp">Application Developer</a>
                         <div class="dropdown-divider"></div>
                         <h6 class="dropdown-header">Logout:</h6>
-                        <a class="dropdown-item" href="login.html">Logout</a>
+                        <a class="dropdown-item" href="../logOutServlet">Logout</a>
                     </div>
                 </li>
 
@@ -130,7 +136,7 @@
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+                        <a class="btn btn-primary" href="login.jsp">Logout</a>
                     </div>
                 </div>
             </div>
@@ -156,3 +162,6 @@
         <script src="js/demo/chart-area-demo.js"></script>
     </body>
 </html>
+<%
+}
+%>

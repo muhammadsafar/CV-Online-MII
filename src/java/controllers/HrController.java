@@ -53,7 +53,9 @@ public class HrController {
     }
     
     public Hr getbyId(String hrId){
-    
         return this.hrDAO.getHrById(hrId);
+    }
+    public Hr getbyUser(String user){
+        return this.hrDAO.getHrByUser(user);
     }
 }
